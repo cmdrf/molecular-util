@@ -31,6 +31,7 @@ SOFTWARE.
 #include <cassert>
 #include <cmath>
 #include <algorithm>
+#include <Eigen/Dense>
 
 namespace molecular
 {
@@ -77,6 +78,24 @@ public:
 				m[i][j] = *it;
 	}
 
+	/// Construct from Eigen expression
+	template<typename OtherDerived>
+	Matrix(const Eigen::MatrixBase<OtherDerived>& other)
+	{
+		ToEigen() = other;
+	}
+
+	/// Assign from Eigen expression
+	template<typename OtherDerived>
+	Matrix& operator=(const Eigen::MatrixBase <OtherDerived>& other)
+	{
+		ToEigen() = other;
+		return *this;
+	}
+
+	/// Returns array of matrix elements in row-major order
+	/** OpenGL wants column-major order. */
+	inline const T* Get() const {return &m[0][0];}
 	inline T* operator[](int row) {return m[row];}
 	inline const T* operator[](int row) const {return m[row];}
 
@@ -85,6 +104,9 @@ public:
 
 	/** Eigen compatibility. */
 	inline T& operator()(int row, int col) {return m[row][col];}
+
+	auto ToEigen() {return Eigen::Map<Eigen::Matrix<T, rows, cols, Eigen::DontAlign | Eigen::RowMajor>>(m[0]);}
+	auto ToEigen() const {return Eigen::Map<const Eigen::Matrix<T, rows, cols, Eigen::DontAlign | Eigen::RowMajor>>(m[0]);}
 
 	/// Matrix-matrix multiplication
 	template<class M>
@@ -178,10 +200,147 @@ public:
 		return newMat;
 	}
 
+	static Matrix Zeros()
+	{
+		Matrix newMat;
+		for(int i = 0; i < rows; ++i)
+			for(int j = 0; j < cols; ++j)
+					newMat(i, j) = 0;
+		return newMat;
+	}
+
+	void SetIdentity()
+	{
+		for(int i = 0; i < rows; ++i)
+		{
+			for(int j = 0; j < cols; ++j)
+			{
+				if(i == j)
+					m[i][j] = 1;
+				else
+					m[i][j] = 0;
+			}
+		}
+	}
+
+	/// Returns the matrix with mat concatenated to the right side
+	/** Both matrices must have the same number of rows. The resulting matrix
+		has as many columns as both input matrices together. */
+	template<class M>
+	Matrix<M::kRows, M::kCols + cols, T> Augmented(const M& mat) const
+	{
+		static_assert(M::kRows == rows, "Both matrices must have the same number of rows");
+
+		Matrix<M::kRows, M::kCols + cols, T> newMat;
+		for(int r = 0; r < rows; ++r)
+		{
+			for(int c = 0; c < cols; ++c)
+				newMat(r, c) = m[r][c];
+		}
+
+		for(int r = 0; r < rows; ++r)
+		{
+			for(int c = 0; c < M::kCols; ++c)
+				newMat(r, c + cols) = mat(r, c);
+		}
+		return newMat;
+	}
+
+	/// Returns the right portion of the matrix with the given width
+	template<int newcols>
+	Matrix<rows, newcols, T> SubMatrixRight() const;
+
+	/// Returns the left portion of the matrix with the given width
+	template<int newcols>
+	Matrix<rows, newcols, T> SubMatrixLeft() const;
+
+	void Print() const
+	{
+
+		for(int r = 0; r < rows; ++r)
+		{
+			for(int c = 0; c < cols; ++c)
+			{
+				std::cout.width(3);
+				std::cout << m[r][c] << " ";
+			}
+			std::cout << std::endl;
+		}
+		std::cout << std::endl;
+	}
+
+	/// Returns the inverse of the matrix
+	Matrix<rows, cols, T> Inverse() const;
+
+	/// Returns the transposed of the matrix
+	Matrix<cols, rows, T> Transposed() const
+	{
+		Matrix<cols, rows, T> newMat;
+		for(int r = 0; r < rows; ++r)
+		{
+			for(int c = 0; c < cols; ++c)
+				newMat(c, r) = m[r][c];
+		}
+		return newMat;
+	}
+
+	/// Returns the sum of the diagonal elements
+	T Trace() const
+	{
+		static_assert(rows == cols, "Number of rows must equal number of columns");
+		T sum = 0;
+		for(int i = 0; i < rows; ++i)
+			sum += m[i][i];
+
+		return sum;
+	}
+
 protected:
 	/** Row-major order. */
 	T m[rows][cols];
 };
+
+/*****************************************************************************/
+
+template<int rows, int cols, typename T>
+template<int newcols>
+Matrix<rows, newcols, T> Matrix<rows, cols, T>::SubMatrixRight() const
+{
+	static_assert(newcols < cols, "Can only extract submatrix that is smaller");
+
+	Matrix<rows, newcols, T> newMat;
+	for(int r = 0; r < rows; ++r)
+	{
+		for(int c = 0; c < newcols; ++c)
+		{
+			newMat(r, c) = m[r][c + cols - newcols];
+		}
+	}
+	return newMat;
+}
+
+template<int rows, int cols, typename T>
+template<int newcols>
+Matrix<rows, newcols, T> Matrix<rows, cols, T>::SubMatrixLeft() const
+{
+	static_assert(newcols < cols, "Can only extract submatrix that is smaller");
+
+	Matrix<rows, newcols, T> newMat;
+	for(int r = 0; r < rows; ++r)
+	{
+		for(int c = 0; c < newcols; ++c)
+		{
+			newMat[r][c] = m[r][c];
+		}
+	}
+	return newMat;
+}
+
+template<int rows, int cols, typename T>
+Matrix<rows, cols, T> Matrix<rows, cols, T>::Inverse() const
+{
+	return ToEigen().inverse();
+}
 
 /*****************************************************************************/
 

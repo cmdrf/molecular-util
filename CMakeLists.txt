@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.3)
 project(molecular-util)
 
 add_library(molecular-util
+	molecular/util/AxisAlignedBox.cpp
 	molecular/util/AxisAlignedBox.h
 	molecular/util/CommandLineParser.cpp
 	molecular/util/CommandLineParser.h
@@ -30,3 +31,4 @@ add_library(molecular-util
 )
 add_library(molecular::util ALIAS molecular-util)
 target_include_directories(molecular-util PUBLIC .)
+target_link_libraries(molecular-util PUBLIC Eigen3::Eigen)
