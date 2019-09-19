@@ -36,6 +36,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// Axis aligned (bounding) box (AABB)
 class AxisAlignedBox
@@ -73,6 +75,7 @@ inline void AxisAlignedBox::Stretch(const Vector3& vec)
 	}
 }
 
+}
 } // namespace molecular
 
 #endif // MOLECULAR_AXISALIGNEDBOX_H

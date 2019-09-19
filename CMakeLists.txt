@@ -13,6 +13,9 @@ add_library(molecular-util
 	molecular/util/Math.h
 	molecular/util/Matrix4.h
 	molecular/util/Matrix.h
+	molecular/util/Mesh.h
+	molecular/util/MeshUtils.cpp
+	molecular/util/MeshUtils.h
 	molecular/util/Range.h
 	molecular/util/SphericalHarmonics.cpp
 	molecular/util/SphericalHarmonics.h

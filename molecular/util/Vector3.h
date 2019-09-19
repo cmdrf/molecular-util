@@ -40,6 +40,10 @@ public:
 	inline Vector3T(const T x, const T y, const T z);
 	inline Vector3T(const T inV[3]);
 
+	inline T X() const { return this->v[0];}
+	inline T Y() const { return this->v[1];}
+	inline T Z() const { return this->v[2];}
+
 	Vector3T	CrossProduct(const Vector3T& inV) const;
 	T DotProduct(const Vector3T& inV) const
 	{
