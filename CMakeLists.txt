@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.3)
 project(molecular-util)
 
+option(BUILD_TESTING "Build unit test runner executables" OFF)
+
 add_library(molecular-util
 	molecular/util/AxisAlignedBox.cpp
 	molecular/util/AxisAlignedBox.h
@@ -36,4 +38,15 @@ add_library(molecular::util ALIAS molecular-util)
 target_include_directories(molecular-util PUBLIC .)
 target_link_libraries(molecular-util PUBLIC Eigen3::Eigen)
 
-add_subdirectory(tests)
+if(BUILD_TESTING)
+	add_library(molecular-testbed
+		molecular/testbed/TestsMain.cpp
+		molecular/testbed/Matchers.cpp
+		molecular/testbed/Matchers.h
+	)
+    add_library(molecular::testbed ALIAS molecular-testbed)
+	target_include_directories(molecular-testbed PUBLIC 3rdparty .)
+	target_link_libraries(molecular-testbed PUBLIC molecular::util)
+
+	add_subdirectory(tests)
+endif()

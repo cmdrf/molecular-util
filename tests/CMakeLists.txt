@@ -1,14 +1,4 @@
-option(BUILD_TESTING "Build unit test runner executable" OFF)
-
-if(NOT BUILD_TESTING)
-	return()
-endif()
-
 add_executable(molecular-util-tests
-	TestsMain.cpp
-	Matchers.cpp
-	Matchers.h
-
 	TestAxisAlignedBox.cpp
 	TestFloatToHalf.cpp
 	TestHash.cpp
@@ -24,5 +14,5 @@ add_executable(molecular-util-tests
 
 target_link_libraries(molecular-util-tests
 	molecular::util
+	molecular::testbed
 )
-target_include_directories(molecular-util-tests PRIVATE ../3rdparty)
