@@ -6,6 +6,8 @@
 
 #include "Quaternion.h"
 
+namespace molecular
+{
 const Quaternion Quaternion::kIdentity = Quaternion(1,0,0,0);
 
 // http://euclideanspace.com/maths/geometry/rotations/conversions/eulerToQuaternion/index.htm
@@ -36,4 +38,6 @@ Quaternion Quaternion::Slerp(const Quaternion& p, const Quaternion& q, float bet
 	float wp = std::sin((1.0f - beta) * theta) / sinTheta;
 	float wq = std::sin(beta * theta) / sinTheta;
 	return p * wp + q * wq;
+}
+
 }

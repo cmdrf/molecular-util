@@ -1,7 +1,7 @@
 /* Vector4.h
 MIT License
 
-Copyright (c) 2018 Fabian Herb
+Copyright (c) 2018-2019 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,6 +37,9 @@ public:
 	Vector4() {}
 	Vector4(T x, T y, T z, T w = 1) {v[0] = x; v[1] = y; v[2] = z; v[3] = w;}
 	Vector4(const Vector3& xyz, T w = 1) {v[0] = xyz[0]; v[1] = xyz[1]; v[2] = xyz[2]; v[3] = w;}
+
+	Vector3 Xyz() const {return Vector3(v[0], v[1], v[2]);}
+	Vector2 Xy() const {return Vector2(v[0], v[1]);}
 };
 
 inline std::ostream& operator<<(std::ostream& stream, const Vector4& vec)

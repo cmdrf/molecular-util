@@ -70,6 +70,7 @@ AxisAlignedBox::LineIntersectionResult AxisAlignedBox::LineIntersection(const Ve
 }
 
 }
+} // molecular
 
 std::ostream& operator<<(std::ostream& o, const molecular::util::AxisAlignedBox& box)
 {

@@ -50,6 +50,17 @@ inline bool Equals(const char* a, const char* b) {return std::strcmp(a, b) == 0;
 /// Wrapper around strerror_s or strerror
 std::string StrError(int errnum);
 
+/// Reads entire storage (e.g. a file) and returns it as string
+template<class TStorage>
+std::string FromStorage(TStorage& storage)
+{
+	size_t size = storage.GetSize();
+	std::vector<char> out;
+	out.resize(size);
+	storage.Read(out.data(), size);
+	return std::string(out.begin(), out.end());
+}
+
 /// Wrapper around strncpy with automatic destination size determination
 template<size_t size>
 void Copy(const char* source, char (&dest)[size])

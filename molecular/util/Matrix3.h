@@ -4,8 +4,8 @@
 	This file is part of Molecular Engine.
 */
 
-#ifndef MATRIX3_H
-#define MATRIX3_H
+#ifndef MOLECULAR_MATRIX3_H
+#define MOLECULAR_MATRIX3_H
 
 #include "Matrix.h"
 #include "Quaternion.h"
@@ -238,4 +238,4 @@ public:
 
 }
 
-#endif
+#endif // MOLECULAR_MATRIX3_H

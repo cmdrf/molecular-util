@@ -26,10 +26,13 @@ SOFTWARE.
 #ifndef MOLECULAR_SPHERICALHARMONICS_H
 #define MOLECULAR_SPHERICALHARMONICS_H
 
-#include "Vector3.h"
-#include "Vector.h"
 #include <array>
 #include <vector>
+
+#include "Vector3.h"
+#include "Vector.h"
+#include "Matrix3.h"
+#include "Math.h"
 
 namespace molecular
 {
@@ -57,8 +60,28 @@ std::vector<Sample<numBands>> SetupSphericalSamples(unsigned int samplesCount = 
 extern template std::vector<Sample<3>> SetupSphericalSamples<3>(unsigned int samplesCount);
 extern template std::vector<Sample<4>> SetupSphericalSamples<4>(unsigned int samplesCount);
 
+/// Rotate spherical harmonics coefficients by a rotation matrix
+template<typename T>
+void RotateOrder3(T dst[9], const T src[9], const T mat[3][3]);
+
+/// Rotate spherical harmonics coefficients by a rotation matrix
+void RotateOrder3(float dst[9], const float src[9], const Matrix3& mat);
+
+template<int numBands, typename PolarFunction>
+Vector<numBands * numBands, double> ProjectPolarFunction(PolarFunction func, const std::vector<Sample<numBands>>& samples)
+{
+	Vector<numBands * numBands, double> result;
+	// for each sample
+	for(auto& sample: samples)
+		result += sample.coeff * func(sample.theta, sample.phi);
+
+	// divide the result by weight and number of samples
+	const double weight = 4.0 * Math::kPi_d;
+	result *= weight / samples.size();
+	return result;
 }
 
-} // namespace molecular
+}
+}
 
 #endif // SPHERICALHARMONICS_H
