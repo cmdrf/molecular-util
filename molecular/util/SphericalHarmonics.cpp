@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018 Fabian Herb
+Copyright (c) 2018-2019 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -134,7 +134,7 @@ double Factorial(int x)
 
 double ShRenormalisation(int l, int m)
 {
-	return std::sqrt((Factorial(l - m) * (2.0 * l + 1.0)) / (Factorial(l + m) * 4.0 * kPi_d));
+	return std::sqrt((Factorial(l - m) * (2.0 * l + 1.0)) / (Factorial(l + m) * 4.0 * Math::kPi_d));
 }
 
 double SphericalHarmonic(int l, int m, double theta, double phi)
@@ -169,7 +169,7 @@ std::vector<Sample<numBands>> SetupSphericalSamples(unsigned int samplesCount)
 			const double u = i + randomDist(randomEngine);
 			const double v = j + randomDist(randomEngine);
 			sample.theta = 2.0 * std::acos(sqrt(1.0 - u * samplesCountInv));
-			sample.phi = 2.0 * kPi_d * v * samplesCountInv;
+			sample.phi = 2.0 * Math::kPi_d * v * samplesCountInv;
 			sample.vec = UnitVectorFromSphericalCoords(sample.theta, sample.phi);
 
 			for(int l = 0; l < numBands; ++l)

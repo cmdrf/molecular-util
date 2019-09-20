@@ -11,12 +11,15 @@ add_library(molecular-util
 	molecular/util/FloatToHalf.cpp
 	molecular/util/FloatToHalf.h
 	molecular/util/Hash.h
+	molecular/util/Math.cpp
 	molecular/util/Math.h
 	molecular/util/Matrix4.h
 	molecular/util/Matrix.h
 	molecular/util/Mesh.h
 	molecular/util/MeshUtils.cpp
 	molecular/util/MeshUtils.h
+	molecular/util/Quaternion.cpp
+	molecular/util/Quaternion.h
 	molecular/util/Range.h
 	molecular/util/SphericalHarmonics.cpp
 	molecular/util/SphericalHarmonics.h
@@ -32,3 +35,5 @@ add_library(molecular-util
 add_library(molecular::util ALIAS molecular-util)
 target_include_directories(molecular-util PUBLIC .)
 target_link_libraries(molecular-util PUBLIC Eigen3::Eigen)
+
+add_subdirectory(tests)

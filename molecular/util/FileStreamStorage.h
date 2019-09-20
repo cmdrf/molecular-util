@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018 Fabian Herb
+Copyright (c) 2018-2019 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef FILESTREAMSTORAGE_H
-#define FILESTREAMSTORAGE_H
+#ifndef MOLECULAR_FILESTREAMSTORAGE_H
+#define MOLECULAR_FILESTREAMSTORAGE_H
 
 #include <cstdio>
 #include <string>

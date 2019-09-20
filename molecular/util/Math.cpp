@@ -8,6 +8,8 @@
 #include <cmath>
 #include <array>
 
+namespace molecular
+{
 namespace Math
 {
 
@@ -168,4 +170,5 @@ T PositiveCubicPolynomialRoot(T a, T b, T c)
 template double PositiveCubicPolynomialRoot(double, double, double);
 template float PositiveCubicPolynomialRoot(float, float, float);
 
+}
 }
