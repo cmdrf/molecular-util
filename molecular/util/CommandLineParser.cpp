@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018 Fabian Herb
+Copyright (c) 2018-2019 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,11 +28,6 @@ SOFTWARE.
 
 namespace molecular
 {
-
-CommandLineParser::CommandLineParser()
-{
-
-}
 
 void CommandLineParser::Parse(int argc, char** argv)
 {
@@ -97,8 +92,9 @@ CommandLineParser::Flag::Flag(CommandLineParser& parser, const std::string& long
 {
 }
 
-void CommandLineParser::Flag::Parse(int& i, int /*argc*/, char** /*argv*/)
+void CommandLineParser::Flag::Parse(int& /*i*/, int /*argc*/, char** /*argv*/)
 {
+	// Flags don't have additional parameters to parse
 }
 
 } // namespace molecular

@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018 Fabian Herb
+Copyright (c) 2018-2019 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,10 +34,35 @@ SOFTWARE.
 namespace molecular
 {
 
+/// Easy processing of argc and argv
+/** Example:
+@code
+int main(int argc, char** argv)
+{
+	CommandLineParser cmd;
+	CommandLineParser::PositionalArg<std::string> inFileName(cmd, "input file", "Input mesh to compile");
+	CommandLineParser::PositionalArg<std::string> outFileName(cmd, "output file", "Output compiled mesh file");
+	CommandLineParser::Flag prt(cmd, "prt", "Enable radiance transfer precomputation");
+	CommandLineParser::Option<float> scale(cmd, "scale", "Mesh scale factor", 1.0);
+
+	try
+	{
+		cmd.Parse(argc, argv);
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return EXIT_FAILURE;
+	}
+
+	// Get value by dereferencing:
+	std::cerr << "Input file: " << *inFileName;
+}
+@endcode
+*/
 class CommandLineParser
 {
 public:
-	CommandLineParser();
 	void Parse(int argc, char** argv);
 
 	class Arg;
@@ -95,6 +120,8 @@ private:
 	std::string mName;
 };
 
+/// Option without parameter
+/** Example: "--enable-thing" */
 class CommandLineParser::Flag : public CommandLineParser::OptionBase
 {
 public:
@@ -102,6 +129,8 @@ public:
 	void Parse(int& i, int argc, char** argv) override;
 };
 
+/// Command line option with parameter
+/** Something like "--input-file foo.txt" */
 template<class T>
 class CommandLineParser::Option : public CommandLineParser::OptionBase
 {

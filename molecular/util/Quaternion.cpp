@@ -50,7 +50,7 @@ Quaternion Quaternion::FromAngles(float heading, float attitude, float bank)
 Quaternion Quaternion::Slerp(const Quaternion& p, const Quaternion& q, float beta)
 {
 	const float cosHalfTheta = p[0] * q[0] + p[1] * q[1] + p[2] * q[2] + p[3] * q[3];
-	if(std::abs(cosHalfTheta) >= 1.0)// If p == q or p == -q then theta = 0 and we can return p
+	if(std::abs(cosHalfTheta) >= 1.0f)// If p == q or p == -q then theta = 0 and we can return p
 		return p;
 	const float theta = std::acos(cosHalfTheta);
 	float sinTheta = std::sin(theta);
