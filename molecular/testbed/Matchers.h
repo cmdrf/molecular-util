@@ -31,7 +31,8 @@ SOFTWARE.
 #include <molecular/util/Matrix.h>
 #include <catch.hpp>
 
-using namespace molecular;
+namespace molecular
+{
 
 class EqualsVector2 : public Catch::MatcherBase<Vector2>
 {
@@ -136,6 +137,8 @@ template<int rows, int cols, typename T>
 inline EqualsMatrix<rows, cols, T> EqualsApprox(const Matrix<rows, cols, T>& m, double epsilon = 0.00001)
 {
 	return EqualsMatrix<rows, cols, T>(m, epsilon);
+}
+
 }
 
 #endif // MATCHERS_H

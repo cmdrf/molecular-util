@@ -25,6 +25,9 @@ SOFTWARE.
 
 #include "Matchers.h"
 
+namespace molecular
+{
+
 bool EqualsVector2::match(const Vector2& v) const
 {
 	return v[0] == Approx(mV[0]).epsilon(mEpsilon).margin(mMargin) && v[1] == Approx(mV[1]).epsilon(mEpsilon).margin(mMargin);
@@ -66,6 +69,4 @@ std::string EqualsQuaternion::describe() const
 	return ss.str();
 }
 
-
-
-
+}
