@@ -43,7 +43,7 @@ class True
 {
 public:
 	template<class Iterator>
-	static bool Parse (Iterator& begin, Iterator end, void*)
+	static bool Parse (Iterator& /*begin*/, Iterator /*end*/, void*)
 	{
 		return true;
 	}
@@ -55,7 +55,7 @@ class False
 {
 public:
 	template<class Iterator>
-	static bool Parse (Iterator& begin, Iterator end, void*)
+	static bool Parse (Iterator& /*begin*/, Iterator /*end*/, void*)
 	{
 		return false;
 	}
