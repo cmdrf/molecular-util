@@ -128,7 +128,7 @@ double Factorial(int x)
 		/*34*/	2.9523279903960414084761860964352e38,
 		/*35*/	1.03331479663861449296666513375232e40
 	};
-	assert(x >= 0 && x < sizeof(table));
+	assert(x >= 0 && x < static_cast<int>(sizeof(table)));
 	return table[x];
 }
 
