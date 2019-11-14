@@ -28,6 +28,7 @@ SOFTWARE.
 
 #include <string>
 #include <ostream>
+#include <cstdint>
 
 namespace molecular
 {
@@ -35,7 +36,7 @@ namespace molecular
 /// Information about vertex attribute data in a buffer
 struct VertexAttributeInfo
 {
-	enum
+	enum : std::uint32_t
 	{
 		kPosition = 0xe7dccea2,
 		kNormal = 0x11c36e42,
