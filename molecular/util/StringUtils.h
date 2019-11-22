@@ -75,6 +75,12 @@ void Copy(const std::string& source, char (&dest)[size])
 	strncpy(dest, source.c_str(), size);
 }
 
+/// Splits a string at the given delimiter and returns list of delimited elements
+std::vector<std::string> Explode(const std::string& str, char delimiter);
+
+/// Splits a string at the given delimiters and returns list of delimited elements
+std::vector<std::string> Explode(const std::string& str, const char* delimiters);
+
 }
 
 } // namespace molecular

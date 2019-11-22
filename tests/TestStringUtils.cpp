@@ -75,6 +75,7 @@ TEST_CASE("TestSnPrintF")
 	StringUtils::SnPrintF(buffer, 128, "%s @%s", test, test);
 	CHECK_THAT(buffer, Equals("test @test"));
 }
+*/
 
 TEST_CASE("TestExplode")
 {
@@ -96,6 +97,7 @@ TEST_CASE("TestExplode")
 	CHECK("" == result.at(5));
 }
 
+/*
 TEST_CASE("TestWrapLines")
 {
 	const char* expected = "Hallo bla bla\nbla0123456789\nbla\nlorem ipsum\ndolor";

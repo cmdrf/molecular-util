@@ -86,6 +86,36 @@ std::string StrError(int errnum)
 #endif
 }
 
+template<class T>
+std::vector<std::string> ExplodeImpl(const std::string& str, T delimiter)
+{
+	std::vector<std::string> output;
+	size_t currentBegin = 0;
+	while(true)
+	{
+		size_t currentEnd = str.find_first_of(delimiter, currentBegin);
+		if(currentEnd == std::string::npos)
+		{
+			output.push_back(str.substr(currentBegin));
+			break;
+		}
+		else
+			output.push_back(str.substr(currentBegin, currentEnd - currentBegin));
+		currentBegin = currentEnd + 1;
+	}
+	return output;
+}
+
+std::vector<std::string> Explode(const std::string& str, char delimiter)
+{
+	return ExplodeImpl(str, delimiter);
+}
+
+std::vector<std::string> Explode(const std::string& str, const char* delimiters)
+{
+	return ExplodeImpl(str, delimiters);
+}
+
 }
 
 } // namespace molecular
