@@ -32,7 +32,7 @@ SOFTWARE.
 using namespace molecular;
 using namespace molecular::util;
 using namespace molecular::testbed;
-using namespace molecular::Math;
+using namespace molecular::util::Math;
 
 TEST_CASE("TestQuaternionRotation")
 {

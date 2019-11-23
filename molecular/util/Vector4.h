@@ -29,6 +29,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// Four-dimensional vector
 class Vector4 : public VectorTmpl<4, Vector4>
@@ -48,6 +50,7 @@ inline std::ostream& operator<<(std::ostream& stream, const Vector4& vec)
 	return stream;
 }
 
+}
 } // namespace molecular
 
 #endif // MOLECULAR_VECTOR4_H

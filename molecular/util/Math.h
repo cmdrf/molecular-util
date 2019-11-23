@@ -31,6 +31,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 namespace Math
 {
 
@@ -77,6 +79,7 @@ inline Vector3 Barycentric(const Vector3& a, const Vector3& b, const Vector3& c,
 }
 
 } // Math
+}
 } // molecular
 
 #endif // MOLECULAR_MATH_H

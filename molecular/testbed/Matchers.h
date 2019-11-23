@@ -35,6 +35,7 @@ namespace molecular
 {
 namespace testbed
 {
+using namespace molecular::util;
 
 class EqualsVector2 : public Catch::MatcherBase<Vector2>
 {

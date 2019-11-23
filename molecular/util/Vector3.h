@@ -30,6 +30,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// Generic vector with 3 elements
 template<typename T>
@@ -150,6 +152,7 @@ std::ostream& operator<<(std::ostream& stream, const Vector3T<T>& vec)
 	return stream;
 }
 
+}
 } // namespace molecular
 
 #endif

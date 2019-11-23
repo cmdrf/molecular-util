@@ -26,7 +26,7 @@ SOFTWARE.
 #include <catch.hpp>
 #include <molecular/util/Math.h>
 
-using namespace molecular;
+using namespace molecular::util;
 
 TEST_CASE("TestPositiveQuadraticPolynomialRoot")
 {

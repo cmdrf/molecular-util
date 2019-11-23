@@ -29,7 +29,7 @@ SOFTWARE.
 
 TEST_CASE("TestFloatToHalf")
 {
-	molecular::FloatToHalf fth;
+	molecular::util::FloatToHalf fth;
 
 	CHECK(0b0'01111'0000000000 == fth.Convert(1.0f));
 	CHECK(0b0'01111'0000000001 == fth.Convert(1.0009765625f)); // (next smallest float after 1)

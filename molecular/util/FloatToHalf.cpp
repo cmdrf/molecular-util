@@ -27,6 +27,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 FloatToHalf::FloatToHalf()
 {
@@ -72,4 +74,6 @@ FloatToHalf::FloatToHalf()
 	}
 }
 
+}
 } // namespace molecular
+
