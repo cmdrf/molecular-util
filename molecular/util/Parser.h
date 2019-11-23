@@ -30,6 +30,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// A recursive-descent parser with backtracking
 /** Can be used as a scannerless parser.
@@ -248,7 +250,7 @@ typedef Concatenation<Digit, Repetition<Digit> > UnsignedInteger;
 typedef Concatenation<Option<Char<'-'> >, UnsignedInteger> Integer;
 typedef Concatenation<Integer, Option<Concatenation<Char<'.'>, UnsignedInteger> >, Option<Concatenation<Char<'e'>, Integer> > > Real;
 
-} // namespace parser
-
+} // namespace Parser
+} // namespace util
 } // namespace molecular
 #endif // MOLECULAR_PARSER_H

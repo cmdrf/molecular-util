@@ -26,7 +26,7 @@ SOFTWARE.
 #include <catch.hpp>
 #include <molecular/util/Parser.h>
 
-using namespace molecular::Parser;
+using namespace molecular::util::Parser;
 
 TEST_CASE("TestParser")
 {

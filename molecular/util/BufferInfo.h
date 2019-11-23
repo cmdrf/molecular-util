@@ -32,6 +32,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// Information about vertex attribute data in a buffer
 struct VertexAttributeInfo
@@ -181,6 +183,7 @@ inline std::ostream& operator<<(std::ostream& o, VertexAttributeInfo::Type type)
 	}
 }
 
+}
 }
 
 #endif // MOLECULAR_BUFFERINFO_H
