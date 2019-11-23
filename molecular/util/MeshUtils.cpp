@@ -34,6 +34,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 namespace MeshUtils
 {
@@ -206,5 +208,5 @@ void ReducePrecision(Mesh& mesh)
 }
 
 } // namespace MeshUtils
-
+} // namespace util
 } // namespace molecular

@@ -28,6 +28,8 @@ SOFTWARE.
 #include <molecular/util/Matrix3.h>
 
 using namespace molecular;
+using namespace molecular::util;
+using namespace molecular::testbed;
 
 TEST_CASE("TestMatrix3FromQuaternion")
 {

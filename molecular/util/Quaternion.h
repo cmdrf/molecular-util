@@ -31,6 +31,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// 4D quaternion class for storing rotation values
 class Quaternion
@@ -173,9 +175,10 @@ inline Quaternion Quaternion::RotationZ(float angle)
 	return Quaternion(std::cos(0.5f * angle), 0, 0, std::sin(0.5f * angle));
 }
 
-}
+} // namespace util
+} // namespace molecular
 
-inline std::ostream& operator<<(std::ostream& stream, const molecular::Quaternion& q)
+inline std::ostream& operator<<(std::ostream& stream, const molecular::util::Quaternion& q)
 {
 	stream << "(" << q[0] << ", " << q[1] << ", " << q[2] << ", " << q[3] << ")";
 	return stream;

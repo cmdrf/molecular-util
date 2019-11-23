@@ -32,6 +32,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// Rotation matrix
 /** The following convention is used: Consecutive transformations
@@ -255,6 +257,7 @@ public:
 	}
 };
 
+}
 }
 
 #endif // MOLECULAR_MATRIX3_H

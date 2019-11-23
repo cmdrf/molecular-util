@@ -55,6 +55,7 @@ public:
 		int hitDirection;
 	};
 
+	/// Construct infinite box
 	inline AxisAlignedBox();
 	inline AxisAlignedBox(const Vector3& min, const Vector3& max);
 	inline AxisAlignedBox(float minX, float minY, float minZ, float maxX, float maxY, float maxZ);

@@ -35,7 +35,8 @@ SOFTWARE.
 
 namespace molecular
 {
-
+namespace util
+{
 namespace MeshUtils
 {
 /// Convert seperate indices as found in OBJ files to unified ones
@@ -273,7 +274,7 @@ void SeparateToUnifiedIndices(
 }
 
 }
-
+}
 } // namespace molecular
 
 #endif // MOLECULAR_MESHUTILS_H

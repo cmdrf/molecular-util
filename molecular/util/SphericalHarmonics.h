@@ -36,7 +36,8 @@ SOFTWARE.
 
 namespace molecular
 {
-
+namespace util
+{
 namespace SphericalHarmonics
 {
 
@@ -81,6 +82,7 @@ Vector<numBands * numBands, double> ProjectPolarFunction(PolarFunction func, con
 	return result;
 }
 
+}
 }
 }
 

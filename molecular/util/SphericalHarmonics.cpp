@@ -30,6 +30,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 namespace SphericalHarmonics
 {
 
@@ -325,5 +327,6 @@ void RotateOrder3(float dst[9], const float src[9], const Matrix3& mat)
 			mat(2, 0), mat(2, 1), mat(2, 2));
 }
 
+}
 }
 }

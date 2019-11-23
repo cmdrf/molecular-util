@@ -35,6 +35,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// Generic matrix template class
 template<int rows, int cols, typename T = float>
@@ -369,6 +371,7 @@ std::ostream& operator<<(std::ostream& o, const Matrix<rows, cols, T>& m)
 	return o;
 }
 
+}
 } // namespace molecular
 
 #endif // MATRIX_H

@@ -32,6 +32,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// A 4x4 matrix
 class Matrix4 : public Matrix<4, 4>
@@ -241,5 +243,6 @@ inline Matrix4 Matrix4::Scale(float x, float y, float z)
 }
 
 } // namespace molecular
+}
 
 #endif // MOLECULAR_MATRIX4_H

@@ -27,6 +27,9 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
+
 const Quaternion Quaternion::kIdentity = Quaternion(1,0,0,0);
 
 // http://euclideanspace.com/maths/geometry/rotations/conversions/eulerToQuaternion/index.htm
@@ -59,4 +62,5 @@ Quaternion Quaternion::Slerp(const Quaternion& p, const Quaternion& q, float bet
 	return p * wp + q * wq;
 }
 
+}
 }

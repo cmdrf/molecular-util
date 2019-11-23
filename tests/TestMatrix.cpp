@@ -28,6 +28,8 @@ SOFTWARE.
 #include <molecular/util/Matrix.h>
 
 using namespace molecular;
+using namespace molecular::util;
+using namespace molecular::testbed;
 
 TEST_CASE("TestMatrixConstructor")
 {

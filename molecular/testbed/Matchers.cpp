@@ -27,6 +27,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace testbed
+{
 
 bool EqualsVector2::match(const Vector2& v) const
 {
@@ -54,7 +56,7 @@ std::string EqualsVector3::describe() const
 	return ss.str();
 }
 
-bool EqualsQuaternion::match(const Quaternion& q) const
+bool EqualsQuaternion::match(const util::Quaternion& q) const
 {
 	return q[0] == Approx(mQ[0]).epsilon(mEpsilon).margin(mMargin)
 			&& q[1] == Approx(mQ[1]).epsilon(mEpsilon).margin(mMargin)
@@ -69,4 +71,5 @@ std::string EqualsQuaternion::describe() const
 	return ss.str();
 }
 
+}
 }

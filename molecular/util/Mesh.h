@@ -38,6 +38,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 using Hash = uint32_t;
 
@@ -181,6 +183,7 @@ private:
 
 using MeshSet = std::vector<Mesh>;
 
+}
 }
 
 #endif // MOLECULAR_MESH_H

@@ -33,6 +33,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace testbed
+{
 
 class EqualsVector2 : public Catch::MatcherBase<Vector2>
 {
@@ -80,38 +82,38 @@ inline EqualsVector3 EqualsApprox(const Vector3& v, double epsilon = 0.00001, do
 	return EqualsVector3(v, epsilon, margin);
 }
 
-class EqualsQuaternion : public Catch::MatcherBase<Quaternion>
+class EqualsQuaternion : public Catch::MatcherBase<util::Quaternion>
 {
 public:
-	EqualsQuaternion(const Quaternion& q, double epsilon, double margin) : mQ(q), mEpsilon(epsilon), mMargin(margin)
+	EqualsQuaternion(const util::Quaternion& q, double epsilon, double margin) : mQ(q), mEpsilon(epsilon), mMargin(margin)
 	{}
 
 	/// Performs the test for this matcher
-	bool match(const Quaternion& q) const override;
+	bool match(const util::Quaternion& q) const override;
 
 	std::string describe() const override;
 
 private:
-	Quaternion mQ;
+	util::Quaternion mQ;
 	double mEpsilon;
 	double mMargin;
 };
 
 // The builder function
-inline EqualsQuaternion EqualsApprox(const Quaternion& q, double epsilon = 0.00001, double margin = 0.0)
+inline EqualsQuaternion EqualsApprox(const util::Quaternion& q, double epsilon = 0.00001, double margin = 0.0)
 {
 	return EqualsQuaternion(q, epsilon, margin);
 }
 
 template<int rows, int cols, typename T>
-class EqualsMatrix : public Catch::MatcherBase<Matrix<rows, cols, T>>
+class EqualsMatrix : public Catch::MatcherBase<util::Matrix<rows, cols, T>>
 {
 public:
-	EqualsMatrix(const Matrix<rows, cols, T>& m, double epsilon) : mM(m), mEpsilon(epsilon)
+	EqualsMatrix(const util::Matrix<rows, cols, T>& m, double epsilon) : mM(m), mEpsilon(epsilon)
 	{}
 
 	/// Performs the test for this matcher
-	bool match(const Matrix<rows, cols, T>& m) const override
+	bool match(const util::Matrix<rows, cols, T>& m) const override
 	{
 		for(int i = 0; i < rows; ++i)
 			for(int j = 0; j < cols; ++j)
@@ -128,17 +130,18 @@ public:
 	}
 
 private:
-	Matrix<rows, cols, T> mM;
+	util::Matrix<rows, cols, T> mM;
 	double mEpsilon;
 };
 
 // The builder function
 template<int rows, int cols, typename T>
-inline EqualsMatrix<rows, cols, T> EqualsApprox(const Matrix<rows, cols, T>& m, double epsilon = 0.00001)
+inline EqualsMatrix<rows, cols, T> EqualsApprox(const util::Matrix<rows, cols, T>& m, double epsilon = 0.00001)
 {
 	return EqualsMatrix<rows, cols, T>(m, epsilon);
 }
 
+}
 }
 
 #endif // MATCHERS_H

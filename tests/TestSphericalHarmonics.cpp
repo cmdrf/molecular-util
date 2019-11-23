@@ -27,7 +27,8 @@ SOFTWARE.
 #include <molecular/util/SphericalHarmonics.h>
 #include <cmath>
 
-using namespace molecular::SphericalHarmonics;
+using namespace molecular::util::SphericalHarmonics;
+using namespace molecular::util;
 using namespace molecular;
 
 TEST_CASE("TestAssociatedLegendrePolynomial")
@@ -98,7 +99,7 @@ TEST_CASE("TestSphericalHarmonics")
 
 TEST_CASE("TestSphericalHarmonics2")
 {
-	auto samples = SphericalHarmonics::SetupSphericalSamples<3>(180);
+	auto samples = util::SphericalHarmonics::SetupSphericalSamples<3>(180);
 	Vector<9, double> coeffs;
 	for(auto& sample: samples)
 		coeffs += sample.coeff;
