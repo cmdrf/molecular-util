@@ -31,6 +31,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// Base class for data storage to be read from
 /** Data storage can be be files, memory blocks and the like. */
@@ -61,6 +63,7 @@ public:
 	virtual void SetCursor(size_t cursor) = 0;
 };
 
+}
 } // namespace molecular
 
 #endif

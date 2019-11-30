@@ -28,6 +28,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 void CommandLineParser::Parse(int argc, char** argv)
 {
@@ -97,4 +99,5 @@ void CommandLineParser::Flag::Parse(int& /*i*/, int /*argc*/, char** /*argv*/)
 	// Flags don't have additional parameters to parse
 }
 
+}
 } // namespace molecular

@@ -33,6 +33,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// Easy processing of argc and argv
 /** Example:
@@ -195,6 +197,7 @@ private:
 	T mValue;
 };
 
+}
 } // namespace molecular
 
 #endif // MOLECULAR_COMMANDLINEPARSER_H

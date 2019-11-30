@@ -38,6 +38,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// A derived ReadStorage for reading regular files
 class FileReadStorage : public ReadStorage
@@ -130,6 +132,7 @@ private:
 	FILE* mFile = nullptr;
 };
 
+}
 } // namespace molecular
 
 #endif

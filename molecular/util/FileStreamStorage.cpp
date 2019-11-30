@@ -27,6 +27,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 FileReadStorage::FileReadStorage(FileReadStorage&& that) noexcept :
 	mFile(that.mFile)
@@ -88,4 +90,5 @@ FileWriteStorage::~FileWriteStorage()
 	fclose(mFile);
 }
 
+}
 } // namespace molecular
