@@ -28,6 +28,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// Pair of iterators
 /** Can be used in range-based for loops. */
@@ -56,6 +58,7 @@ Range<typename T::iterator> MakeRange(T container)
 	return Range<typename T::iterator>(begin(container), end(container));
 }
 
+}
 } // namespace molecular
 
 #endif // MOLECULAR_RANGE_H

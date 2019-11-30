@@ -31,6 +31,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 /// Vector base class template
 /** Cannot be instanciated directly. Use typedef or subclassing, or the Vector
@@ -320,6 +322,7 @@ inline std::ostream& operator<<(std::ostream& stream, const IntVector4& vec)
 	return stream;
 }
 
+}
 } // namespace molecular
 
 #endif // MOLECULAR_VECTOR_H
