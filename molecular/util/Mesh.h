@@ -45,6 +45,7 @@ namespace util
 template<class T>
 struct AttributeTraits {};
 
+/// Specialization of AttributeTraits for float
 template<>
 struct AttributeTraits<float>
 {
@@ -52,6 +53,7 @@ struct AttributeTraits<float>
 	static const unsigned int components = 1;
 };
 
+/// Specialization of AttributeTraits for Vector2
 template<>
 struct AttributeTraits<Vector2>
 {
@@ -59,6 +61,7 @@ struct AttributeTraits<Vector2>
 	static const unsigned int components = 2;
 };
 
+/// Specialization of AttributeTraits for Vector3
 template<>
 struct AttributeTraits<Vector3>
 {
@@ -66,6 +69,7 @@ struct AttributeTraits<Vector3>
 	static const unsigned int components = 3;
 };
 
+/// Specialization of AttributeTraits for Vector4
 template<>
 struct AttributeTraits<Vector4>
 {
@@ -73,6 +77,7 @@ struct AttributeTraits<Vector4>
 	static const unsigned int components = 4;
 };
 
+/// Specialization of AttributeTraits for IntVector4
 template<>
 struct AttributeTraits<IntVector4>
 {

@@ -33,12 +33,18 @@ namespace molecular
 {
 namespace util
 {
+
+/// Common math functions and constants
 namespace Math
 {
 
+/// Value of mathematical constant Pi, double precision
 static constexpr double kPi_d = 3.1415926535897932384626433832795029;
+
+/// Value of mathematical constant Pi, single precision
 static constexpr float kPi_f = 3.1415926535897932384626433832795029f;
 
+/// Clamp value between minimum and maximum
 template<typename T>
 T Clamp(T a, T min, T max)
 {
@@ -61,8 +67,7 @@ T PositiveQuadraticPolynomialRoot(T a, T b, T c)
 		return (-b - r) / s;
 }
 
-// Compute barycentric coordinates (u, v, w) for
-// point p with respect to triangle (a, b, c)
+/// Compute barycentric coordinates (u, v, w) for point p with respect to triangle (a, b, c)
 inline Vector3 Barycentric(const Vector3& a, const Vector3& b, const Vector3& c, const Vector3& p)
 {
 	Vector3 v0 = b - a, v1 = c - a, v2 = p - a;

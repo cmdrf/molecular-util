@@ -23,8 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef MOLECULAR_TEXTSTREAM_H
-#define MOLECULAR_TEXTSTREAM_H
+#ifndef MOLECULAR_UTIL_TEXTSTREAM_H
+#define MOLECULAR_UTIL_TEXTSTREAM_H
 
 #include <stdexcept>
 #include <stdint.h>
@@ -34,6 +34,7 @@ namespace molecular
 namespace util
 {
 
+/// Reads a file line by line
 class TextReadStreamBase
 {
 public:
@@ -41,6 +42,7 @@ public:
 	virtual char* GetNextLine() = 0;
 };
 
+/// Reads a file line by line
 template<class Storage>
 class TextReadStream : public TextReadStreamBase
 {
@@ -83,4 +85,4 @@ private:
 }
 } // namespace molecular
 
-#endif // TEXTSTREAM_H
+#endif // MOLECULAR_UTIL_TEXTSTREAM_H

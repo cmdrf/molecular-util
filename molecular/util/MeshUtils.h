@@ -37,6 +37,8 @@ namespace molecular
 {
 namespace util
 {
+
+/// Various functions for mesh data processing
 namespace MeshUtils
 {
 /// Convert seperate indices as found in OBJ files to unified ones
@@ -60,6 +62,8 @@ void SeparateToUnifiedIndices(
 		std::vector<Attribute0>& outAttributes0,
 		std::vector<Attribute1>& outAttributes1);
 
+/// Convert seperate indices as found in OBJ files to unified ones
+/** This is an overloaded function. Variant for three attributes. */
 template<class Attribute0, class Attribute1, class Attribute2>
 void SeparateToUnifiedIndices(
 		size_t numIndices,
@@ -74,6 +78,7 @@ void SeparateToUnifiedIndices(
 		std::vector<Attribute1>& outAttributes1,
 		std::vector<Attribute2>& outAttributes2);
 
+/// Interleave vertex attribute data
 /** @param count Count of datums in data0 and data1. Size of data0 must be count times datumSize0 and size of data1 must be count times datumSize1.
 	@param outData Pointer to buffer that has the size of data0 and data1 combined. */
 void Interleave(size_t count, size_t datumSize0, size_t datumSize1, const void* data0, const void* data1, void* outData);
@@ -83,15 +88,26 @@ void Interleave(size_t count, size_t datumSize0, size_t datumSize1, const void* 
 template<typename T>
 void QuadToTriangleIndices(size_t quadCount, const T in[], T out[]);
 
+/// Scale mesh by a given factor
+/** @see Transform() */
 void Scale(Mesh& mesh, float scaleFactor);
 
+/// Calculate normal for triangle
 Vector3 TriangleNormal(const Vector3& p1, const Vector3& p2, const Vector3& p3);
 
+/// Calculate normals for triangles defined by vertex positions and indices
+/** @returns Normals for each vertex, NOT for each index! */
 std::vector<Vector3> IndexedTriangleNormals(const std::vector<Vector3>& positions, const int triangleIndices[], size_t triangleCount);
 
+/// Calculate neighbouring triangles
+/** @returns Indices to triangle neighbours, in the order "triangle 0 neighbor 0, triangle 0
+		neighbor 1, triangle 0 neighbor 2, triangle 1 neighbor 0, ...". This means it has 3x
+		triangleCount elements. */
 std::vector<int> TriangleNeighbours(const int triangleIndices[], unsigned int triangleCount);
 
+/// Transform mesh data by a matrix
 /** Handles only position and normal attributes.
+	@see Scale()
 	@todo Handle more attribute types properly. */
 void Transform(Mesh& mesh, const Matrix4& transform);
 

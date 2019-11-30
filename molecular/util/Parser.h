@@ -63,6 +63,8 @@ public:
 	}
 };
 
+/// Succeeds when one of the parameters succeeds
+/** @todo Convert to C++11 variadic template. */
 template<
 		class P0,
 		class P1,
@@ -91,6 +93,8 @@ public:
 	}
 };
 
+/// Succeeds when all of the parameters succeeds
+/** @todo Convert to C++11 variadic template. */
 template<
 		class P0,
 		class P1,
@@ -122,6 +126,7 @@ public:
 	}
 };
 
+/// Succeeds for an arbitrary count of repetitions (also zero) of P0
 template<class P0>
 class Repetition
 {
@@ -135,6 +140,7 @@ public:
 	}
 };
 
+/// Matches zero or one occurences of P0
 template<class P0>
 class Option
 {
@@ -147,6 +153,7 @@ public:
 	}
 };
 
+/// Match a single character
 template<char c>
 class Char
 {
@@ -206,6 +213,7 @@ public:
 	}
 };
 
+/// Match alphanumerical characters
 class Alpha
 {
 public:
@@ -224,6 +232,7 @@ public:
 	}
 };
 
+/// Match range of characters
 template<char from, char to>
 class CharRange
 {
@@ -243,11 +252,22 @@ public:
 	}
 };
 
+/// Match numerical digit
 using Digit = CharRange<'0', '9'>;
+
+/// Match lowercase letter (from a to z)
 using LowerCaseLetter = CharRange<'a', 'z'>;
+
+/// Match uppercase letter (from A to Z)
 using UpperCaseLetter = CharRange<'A', 'Z'>;
+
+/// Match unsigned integer
 typedef Concatenation<Digit, Repetition<Digit> > UnsignedInteger;
+
+/// Match signed integer
 typedef Concatenation<Option<Char<'-'> >, UnsignedInteger> Integer;
+
+/// Match signed real number
 typedef Concatenation<Integer, Option<Concatenation<Char<'.'>, UnsignedInteger> >, Option<Concatenation<Char<'e'>, Integer> > > Real;
 
 } // namespace Parser

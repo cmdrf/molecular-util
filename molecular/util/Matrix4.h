@@ -36,38 +36,77 @@ namespace util
 {
 
 /// A 4x4 matrix
+/** Specialized type used for 3D transformations. */
 class Matrix4 : public Matrix<4, 4>
 {
 public:
+	/// Construct identity matrix
 	Matrix4()
 	{
 		*this = Identity();
 	}
 
+	/// Construct from array
+	/** Intentionally not explicit. */
 	Matrix4(const float values[16]) : Matrix<4,4>(values) {}
+
+	/// Construct from base class
+	/** Intentionally not explicit. */
 	Matrix4(const Matrix<4, 4>& mat) : Matrix<4, 4>(mat) {}
+
+	/// Construct from 3x4 matrix
+	/** Rest is filled with identity. Intentionally not explicit. */
 	inline Matrix4(const Matrix<3, 4>& mat);
+
+	/// Construct from 3x3 matrix
+	/** Rest is filled with identity. Intentionally not explicit. */
 	inline Matrix4(const Matrix<3, 3>& mat);
 
+	/// Construct from individual components
 	/** Column-major ordering. */
 	inline Matrix4(float m00, float m10, float m20, float m30, float m01, float m11, float m21, float m31, float m02, float m12, float m22, float m32, float m03, float m13, float m23, float m33);
 
 	inline Vector4 operator*(const Vector4& v) const;
 	using Matrix<4,4>::operator*;
 
+	/// Extract translation
 	inline Vector3 GetTranslation() const;
-	inline Matrix3 GetUpperLeft3x3() const;
-	Vector4 GetRow(int row) const {return Vector4(m[row]);}
 
+	/// Extract upper left 3x3 matrix
+	/** Contains rotation and scale. */
+	inline Matrix3 GetUpperLeft3x3() const;
+
+	/// Get row of matrix
+	/** @param row Row to get. Must be between 0 and 3. */
+	Vector4 GetRow(int row) const {assert(row >= 0); assert(row <= 3); return Vector4(m[row]);}
+
+	/// Create perspective projection matrix
 	static inline Matrix4 ProjectionPerspective(float fieldOfView, float aspectRatio, float near, float far);
+
+	/// Create orthographic projection matrix
 	static inline Matrix4 ProjectionOrthographic(float width, float height, float nearPlane, float farPlane);
 
+	/// Create transform matrix representing a rotation around X
 	inline static Matrix4 RotationX(float a);
+
+	/// Create transform matrix representing a rotation around Y
 	inline static Matrix4 RotationY(float a);
+
+	/// Create transform matrix representing a rotation around Z
 	inline static Matrix4 RotationZ(float a);
+
+	/// Create transform matrix representing a translation
 	inline static Matrix4 Translation(float x, float y, float z);
+
+	/// Create transform matrix representing a translation
 	inline static Matrix4 Translation(const Vector3& xyz) {return Translation(xyz[0], xyz[1], xyz[2]);}
+
+	/// Create transform matrix representing a scale operation
+	/** With individual scale factors for X, Y and Z. */
 	static inline Matrix4 Scale(float x, float y, float z);
+
+	/// Create transform matrix representing a scale operation
+	/** With single scale factor for X, Y and Z. */
 	static inline Matrix4 Scale(float xyz) {return Scale(xyz, xyz, xyz);}
 };
 

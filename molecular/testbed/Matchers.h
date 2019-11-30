@@ -37,6 +37,7 @@ namespace testbed
 {
 using namespace molecular::util;
 
+/// Matcher for Catch2 that compares Vector2
 class EqualsVector2 : public Catch::MatcherBase<Vector2>
 {
 public:
@@ -60,6 +61,7 @@ inline EqualsVector2 EqualsApprox(const Vector2& v, double epsilon = 0.00001, do
 	return EqualsVector2(v, epsilon, margin);
 }
 
+/// Matcher for Catch2 that compares Vector3
 class EqualsVector3 : public Catch::MatcherBase<Vector3>
 {
 public:
@@ -83,6 +85,7 @@ inline EqualsVector3 EqualsApprox(const Vector3& v, double epsilon = 0.00001, do
 	return EqualsVector3(v, epsilon, margin);
 }
 
+/// Matcher for Catch2 that compares Quaternion
 class EqualsQuaternion : public Catch::MatcherBase<util::Quaternion>
 {
 public:
@@ -106,6 +109,7 @@ inline EqualsQuaternion EqualsApprox(const util::Quaternion& q, double epsilon =
 	return EqualsQuaternion(q, epsilon, margin);
 }
 
+/// Matcher for Catch2 that compares Matrix
 template<int rows, int cols, typename T>
 class EqualsMatrix : public Catch::MatcherBase<util::Matrix<rows, cols, T>>
 {

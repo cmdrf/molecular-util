@@ -38,13 +38,18 @@ namespace util
 class Quaternion
 {
 public:
+	/// Default scalar type
 	using Real = float;
 
 	/// Default constructor
 	/** Does not initialize the quaternion to identity! */
 	Quaternion() = default;
 
+	/// Construct from individual components
 	constexpr Quaternion(const Real w, const Real x, const Real y, const Real z);
+
+	/// Construct from array
+	/** Order WXYZ. */
 	constexpr Quaternion(const Real inQ[4]);
 
 	/// Create a quaternion out of W and a vector
