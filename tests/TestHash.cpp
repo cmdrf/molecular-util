@@ -26,7 +26,7 @@ SOFTWARE.
 #include <catch.hpp>
 #include <molecular/util/Hash.h>
 
-using namespace molecular;
+using namespace molecular::util;
 
 TEST_CASE("TestMakeHashOverloads")
 {

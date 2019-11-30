@@ -41,8 +41,7 @@ namespace molecular
 namespace util
 {
 
-using Hash = uint32_t;
-
+/// Extract scalar type and array size from commonly used vector types
 template<class T>
 struct AttributeTraits {};
 
@@ -85,10 +84,12 @@ struct AttributeTraits<IntVector4>
 class Mesh
 {
 public:
+	/// Single attribute buffer
 	class Attribute
 	{
 		friend class Mesh;
 	public:
+		/// Get attribute data
 		template<typename T>
 		const T* GetData() const
 		{
@@ -97,6 +98,7 @@ public:
 			return static_cast<const T*>(static_cast<const void*>(mData.data()));
 		}
 
+		/// Get attribute data
 		template<typename T>
 		T* GetData()
 		{
@@ -114,7 +116,11 @@ public:
 			mData.assign(begin, begin + size);
 		}
 
+		/// Get pointer to raw data
+		/** Use GetData() to get a typed representation. */
 		const void* GetRawData() const {return mData.data();}
+
+		/// Get data size in bytes
 		size_t GetRawSize() const {return mData.size();}
 
 		VertexAttributeInfo::Type GetType() const {return mType;}
@@ -126,6 +132,8 @@ public:
 		std::vector<uint8_t> mData;
 	};
 
+	/// Construct from number of vertices
+	/** @param numVertices Number of vertices. NOT number of indices. */
 	explicit Mesh(unsigned int numVertices, IndexBufferInfo::Mode mode = IndexBufferInfo::Mode::kTriangles) :
 	    mNumVertices(numVertices),
 	mMode(mode)
@@ -181,6 +189,7 @@ private:
 	std::unordered_map<Hash, Attribute> mAttributes;
 };
 
+/// Collection of meshes
 using MeshSet = std::vector<Mesh>;
 
 }

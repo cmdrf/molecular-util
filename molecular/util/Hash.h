@@ -32,6 +32,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 typedef uint32_t Hash;
 
@@ -125,6 +127,7 @@ namespace HashUtils
 	constexpr Hash H(const char (&string)[size]) { return Murmur::Hash(string, size - 1); }
 }
 
+}
 } // namespace molecular
 
 #endif // MOLECULAR_HASH_H
