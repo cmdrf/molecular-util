@@ -23,8 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef MOLECULAR_STRINGUTILS_H
-#define MOLECULAR_STRINGUTILS_H
+#ifndef MOLECULAR_UTIL_STRINGUTILS_H
+#define MOLECULAR_UTIL_STRINGUTILS_H
 
 #include <string>
 #include <vector>
@@ -32,7 +32,10 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
+/// Utility functions for string processing
 namespace StringUtils
 {
 /// Wrapper for sscanf that ignores the current locale
@@ -83,6 +86,7 @@ std::vector<std::string> Explode(const std::string& str, const char* delimiters)
 
 }
 
+}
 } // namespace molecular
 
 #endif // MOLECULAR_STRINGUTILS_H

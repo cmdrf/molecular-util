@@ -39,6 +39,8 @@ SOFTWARE.
 
 namespace molecular
 {
+namespace util
+{
 
 namespace StringUtils
 {
@@ -117,5 +119,5 @@ std::vector<std::string> Explode(const std::string& str, const char* delimiters)
 }
 
 }
-
+}
 } // namespace molecular
