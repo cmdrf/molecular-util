@@ -7,6 +7,8 @@ add_library(molecular-util
 	molecular/util/AxisAlignedBox.cpp
 	molecular/util/AxisAlignedBox.h
 	molecular/util/BufferInfo.h
+	molecular/util/CharacterAnimation.cpp
+	molecular/util/CharacterAnimation.h
 	molecular/util/CommandLineParser.cpp
 	molecular/util/CommandLineParser.h
 	molecular/util/FileStreamStorage.cpp
