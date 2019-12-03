@@ -27,6 +27,7 @@ SOFTWARE.
 #define MOLECULAR_FLOATTOHALF_H
 
 #include <cstdint>
+#include <cstring>
 
 namespace molecular
 {
@@ -43,7 +44,9 @@ public:
 
 	uint16_t Convert(float input) const
 	{
-		uint32_t f = *static_cast<uint32_t*>(static_cast<void*>(&input));
+		uint32_t f = 0;
+		std::memcpy(&f, &input, 4);
+
 		return mBaseTable[(f >> 23) & 0x1ff] + ((f & 0x007fffff) >> mShiftTable[(f >> 23) & 0x1ff]);
 	}
 
