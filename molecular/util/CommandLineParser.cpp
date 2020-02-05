@@ -33,6 +33,8 @@ namespace util
 
 void CommandLineParser::Parse(int argc, char** argv)
 {
+	size_t currentPositionalArg = 0;
+
 	for(int i = 1; i < argc; ++i)
 	{
 		std::string arg(argv[i]);
@@ -44,12 +46,12 @@ void CommandLineParser::Parse(int argc, char** argv)
 			it->second->Parse(i, argc, argv);
 			it->second->mPresent = true;
 		}
-		else if(mCurrentPositionalArg < mPositionalArgs.size())
+		else if(currentPositionalArg < mPositionalArgs.size())
 		{
-			auto& posArg = mPositionalArgs.at(mCurrentPositionalArg);
+			auto& posArg = mPositionalArgs.at(currentPositionalArg);
 			posArg->SetValue(arg);
 			posArg->mPresent = true;
-			mCurrentPositionalArg++;
+			currentPositionalArg++;
 		}
 		else
 		{
@@ -57,6 +59,8 @@ void CommandLineParser::Parse(int argc, char** argv)
 		}
 	}
 
+	if(currentPositionalArg != mPositionalArgs.size())
+		throw std::runtime_error("Not enough positional arguments");
 }
 
 void CommandLineParser::PrintHelp(const char* programName)

@@ -87,7 +87,6 @@ public:
 private:
 	std::unordered_map<std::string, OptionBase*> mOptions;
 	std::vector<PositionalArgBase*> mPositionalArgs;
-	size_t mCurrentPositionalArg = 0;
 };
 
 class CommandLineParser::Arg
