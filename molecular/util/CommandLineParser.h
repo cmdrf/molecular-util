@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018-2019 Fabian Herb
+Copyright (c) 2018-2020 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef MOLECULAR_COMMANDLINEPARSER_H
-#define MOLECULAR_COMMANDLINEPARSER_H
+#ifndef MOLECULAR_UTIL_COMMANDLINEPARSER_H
+#define MOLECULAR_UTIL_COMMANDLINEPARSER_H
 
 #include <string>
 #include <unordered_map>
@@ -54,6 +54,7 @@ int main(int argc, char** argv)
 	catch(std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
+		cmd.PrintHelp();
 		return EXIT_FAILURE;
 	}
 
@@ -65,7 +66,12 @@ int main(int argc, char** argv)
 class CommandLineParser
 {
 public:
+	/// Parse command line arguments
+	/** Throws on failure. */
 	void Parse(int argc, char** argv);
+
+	/// Print usage information
+	void PrintHelp(const char* programName);
 
 	class Arg;
 	class OptionBase;
@@ -107,7 +113,7 @@ public:
 	virtual void Parse(int& i, int argc, char** argv) = 0;
 	void PrintHelp() override;
 
-private:
+protected:
 	std::string mLongOpt;
 };
 
@@ -117,6 +123,7 @@ public:
 	PositionalArgBase(CommandLineParser& parser, const std::string& name, const std::string& help);
 	virtual void SetValue(const std::string& arg) = 0;
 	void PrintHelp() override;
+	const std::string& GetName() {return mName;}
 
 private:
 	std::string mName;
@@ -129,6 +136,7 @@ class CommandLineParser::Flag : public CommandLineParser::OptionBase
 public:
 	Flag(CommandLineParser& parser, const std::string& longOpt, const std::string& help);
 	void Parse(int& i, int argc, char** argv) override;
+	void PrintHelp() override;
 };
 
 /// Command line option with parameter
@@ -197,7 +205,7 @@ private:
 	T mValue;
 };
 
-}
+} // namespace util
 } // namespace molecular
 
-#endif // MOLECULAR_COMMANDLINEPARSER_H
+#endif // MOLECULAR_UTIL_COMMANDLINEPARSER_H

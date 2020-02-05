@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018-2019 Fabian Herb
+Copyright (c) 2018-2020 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -59,6 +59,37 @@ void CommandLineParser::Parse(int argc, char** argv)
 
 }
 
+void CommandLineParser::PrintHelp(const char* programName)
+{
+	std::cerr << "Usage: " << programName;
+	if(!mOptions.empty())
+		std::cerr << " <options>";
+	for(auto& arg: mPositionalArgs)
+	{
+		std::cerr << " <" << arg->GetName() << '>';
+	}
+	std::cerr << '\n';
+	if(!mPositionalArgs.empty())
+	{
+		std::cerr << "\nPositional arguments:\n";
+		for(auto& arg: mPositionalArgs)
+		{
+			std::cerr << '\t';
+			arg->PrintHelp();
+		}
+	}
+	if(!mOptions.empty())
+	{
+		std::cerr << "\nOptions:\n";
+		for(auto& arg: mOptions)
+		{
+			std::cerr << '\t';
+			arg.second->PrintHelp();
+		}
+	}
+	std::cerr << '\n';
+}
+
 CommandLineParser::Arg::Arg(const std::string& help) :
     mHelp(help)
 {
@@ -74,7 +105,7 @@ CommandLineParser::OptionBase::OptionBase(CommandLineParser& parser, const std::
 
 void CommandLineParser::OptionBase::PrintHelp()
 {
-	std::cerr << mLongOpt << "\t<value>\t" << mHelp << std::endl;
+	std::cerr << mLongOpt << " <value>\t" << mHelp << std::endl;
 }
 
 CommandLineParser::PositionalArgBase::PositionalArgBase(CommandLineParser& parser, const std::string& name, const std::string& help) :
@@ -97,6 +128,11 @@ CommandLineParser::Flag::Flag(CommandLineParser& parser, const std::string& long
 void CommandLineParser::Flag::Parse(int& /*i*/, int /*argc*/, char** /*argv*/)
 {
 	// Flags don't have additional parameters to parse
+}
+
+void CommandLineParser::Flag::PrintHelp()
+{
+	std::cerr << mLongOpt << '\t' << mHelp << std::endl;
 }
 
 }
