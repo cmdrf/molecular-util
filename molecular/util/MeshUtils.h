@@ -54,11 +54,11 @@ namespace MeshUtils
 template<class Attribute0, class Attribute1>
 void SeparateToUnifiedIndices(
 		size_t numIndices,
-		const uint16_t indices0[],
-		const uint16_t indices1[],
+		const uint32_t indices0[],
+		const uint32_t indices1[],
 		size_t numAttributes0, const Attribute0 attributes0[],
 		size_t numAttributes1, const Attribute1 attributes1[],
-		std::vector<uint16_t>& outIndices,
+		std::vector<uint32_t>& outIndices,
 		std::vector<Attribute0>& outAttributes0,
 		std::vector<Attribute1>& outAttributes1);
 
@@ -67,13 +67,13 @@ void SeparateToUnifiedIndices(
 template<class Attribute0, class Attribute1, class Attribute2>
 void SeparateToUnifiedIndices(
 		size_t numIndices,
-		const uint16_t indices0[],
-		const uint16_t indices1[],
-		const uint16_t indices2[],
+		const uint32_t indices0[],
+		const uint32_t indices1[],
+		const uint32_t indices2[],
 		size_t numAttributes0, const Attribute0 attributes0[],
 		size_t numAttributes1, const Attribute1 attributes1[],
 		size_t numAttributes2, const Attribute2 attributes2[],
-		std::vector<uint16_t>& outIndices,
+		std::vector<uint32_t>& outIndices,
 		std::vector<Attribute0>& outAttributes0,
 		std::vector<Attribute1>& outAttributes1,
 		std::vector<Attribute2>& outAttributes2);
@@ -119,29 +119,29 @@ void ReducePrecision(Mesh& mesh);
 template<class Attribute0, class Attribute1>
 void SeparateToUnifiedIndices(
 		size_t numIndices,
-		const uint16_t indices0[],
-		const uint16_t indices1[],
+		const uint32_t indices0[],
+		const uint32_t indices1[],
 		size_t numAttributes0, const Attribute0 attributes0[],
 		size_t numAttributes1, const Attribute1 attributes1[],
-		std::vector<uint16_t>& outIndices,
+		std::vector<uint32_t>& outIndices,
 		std::vector<Attribute0>& outAttributes0,
 		std::vector<Attribute1>& outAttributes1)
 {
 	if(indices0 && indices1)
 	{
-		std::unordered_map<uint32_t, uint16_t> vertexMap;
+		std::unordered_map<uint32_t, uint32_t> vertexMap;
 
 		for(size_t i = 0; i < numIndices; ++i)
 		{
-			uint16_t index0 = indices0[i];
-			uint16_t index1 = indices1[i];
+			uint32_t index0 = indices0[i];
+			uint32_t index1 = indices1[i];
 
 			uint32_t combinedIndex = (uint32_t(index0) << 16) | index1;
 			auto it = vertexMap.find(combinedIndex);
 
 			if(it == vertexMap.end())
 			{
-				uint16_t outIndex = outAttributes0.size();
+				uint32_t outIndex = outAttributes0.size();
 				vertexMap[combinedIndex] = outIndex;
 				outIndices.push_back(outIndex);
 
@@ -170,13 +170,13 @@ void SeparateToUnifiedIndices(
 template<class Attribute0, class Attribute1, class Attribute2>
 void SeparateToUnifiedIndices(
 		size_t numIndices,
-		const uint16_t indices0[],
-		const uint16_t indices1[],
-		const uint16_t indices2[],
+		const uint32_t indices0[],
+		const uint32_t indices1[],
+		const uint32_t indices2[],
 		size_t numAttributes0, const Attribute0 attributes0[],
 		size_t numAttributes1, const Attribute1 attributes1[],
 		size_t numAttributes2, const Attribute2 attributes2[],
-		std::vector<uint16_t>& outIndices,
+		std::vector<uint32_t>& outIndices,
 		std::vector<Attribute0>& outAttributes0,
 		std::vector<Attribute1>& outAttributes1,
 		std::vector<Attribute2>& outAttributes2)
@@ -184,7 +184,7 @@ void SeparateToUnifiedIndices(
 	if(indices0 && indices1 && indices2)
 	{
 #if 0 // Recursion test
-		std::vector<uint16_t> indices01;
+		std::vector<uint32_t> indices01;
 		std::vector<Attribute0> attributes010;
 		std::vector<Attribute1> attributes011;
 
@@ -221,20 +221,20 @@ void SeparateToUnifiedIndices(
 			outAttributes1.push_back(attr.second);
 		}
 #else
-		std::unordered_map<uint64_t, uint16_t> vertexMap;
+		std::unordered_map<uint64_t, uint32_t> vertexMap;
 
 		for(size_t i = 0; i < numIndices; ++i)
 		{
-			uint16_t index0 = indices0[i];
-			uint16_t index1 = indices1[i];
-			uint16_t index2 = indices2[i];
+			uint32_t index0 = indices0[i];
+			uint32_t index1 = indices1[i];
+			uint32_t index2 = indices2[i];
 
 			uint64_t combinedIndex = (uint64_t(index2) << 32) | (uint64_t(index1) << 16) | index0;
 			auto it = vertexMap.find(combinedIndex);
 
 			if(it == vertexMap.end())
 			{
-				uint16_t outIndex = outAttributes0.size();
+				uint32_t outIndex = outAttributes0.size();
 				vertexMap[combinedIndex] = outIndex;
 				outIndices.push_back(outIndex);
 				assert(numAttributes0 > index0);
