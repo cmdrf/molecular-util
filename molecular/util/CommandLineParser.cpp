@@ -33,6 +33,7 @@ namespace util
 
 void CommandLineParser::Parse(int argc, char** argv)
 {
+	mProgramName = argv[0];
 	size_t currentPositionalArg = 0;
 
 	for(int i = 1; i < argc; ++i)
@@ -63,9 +64,9 @@ void CommandLineParser::Parse(int argc, char** argv)
 		throw std::runtime_error("Not enough positional arguments");
 }
 
-void CommandLineParser::PrintHelp(const char* programName)
+void CommandLineParser::PrintHelp()
 {
-	std::cerr << "Usage: " << programName;
+	std::cerr << "Usage: " << mProgramName;
 	if(!mOptions.empty())
 		std::cerr << " <options>";
 	for(auto& arg: mPositionalArgs)
@@ -137,6 +138,20 @@ void CommandLineParser::Flag::Parse(int& /*i*/, int /*argc*/, char** /*argv*/)
 void CommandLineParser::Flag::PrintHelp()
 {
 	std::cerr << mLongOpt << '\t' << mHelp << std::endl;
+}
+
+CommandLineParser::HelpFlag::HelpFlag(CommandLineParser& parser) :
+	Flag(parser, "help", "Display this help text"),
+	mParser(parser)
+{
+
+}
+
+void CommandLineParser::HelpFlag::Parse(int& /*i*/, int /*argc*/, char** /*argv*/)
+{
+	mParser.PrintHelp();
+	// Stop execution of the program, but don't display an error, sort of:
+	throw std::runtime_error("Please read the help text above.");
 }
 
 }

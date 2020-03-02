@@ -46,6 +46,7 @@ int main(int argc, char** argv)
 	CommandLineParser::PositionalArg<std::string> outFileName(cmd, "output file", "Output compiled mesh file");
 	CommandLineParser::Flag prt(cmd, "prt", "Enable radiance transfer precomputation");
 	CommandLineParser::Option<float> scale(cmd, "scale", "Mesh scale factor", 1.0);
+	CommandLineParser::HelpFlag help(cmd);
 
 	try
 	{
@@ -71,12 +72,14 @@ public:
 	void Parse(int argc, char** argv);
 
 	/// Print usage information
-	void PrintHelp(const char* programName);
+	/** Alternatively, add a HelpFlag. */
+	void PrintHelp();
 
 	class Arg;
 	class OptionBase;
 	class PositionalArgBase;
 	class Flag;
+	class HelpFlag;
 
 	template<class T>
 	class Option;
@@ -87,6 +90,7 @@ public:
 private:
 	std::unordered_map<std::string, OptionBase*> mOptions;
 	std::vector<PositionalArgBase*> mPositionalArgs;
+	std::string mProgramName;
 };
 
 class CommandLineParser::Arg
@@ -137,6 +141,18 @@ public:
 	void Parse(int& i, int argc, char** argv) override;
 	void PrintHelp() override;
 };
+
+/// Displays help
+class CommandLineParser::HelpFlag : public CommandLineParser::Flag
+{
+public:
+	HelpFlag(CommandLineParser& parser);
+	void Parse(int& i, int argc, char** argv) override;
+
+private:
+	CommandLineParser& mParser;
+};
+
 
 /// Command line option with parameter
 /** Something like "--input-file foo.txt" */
