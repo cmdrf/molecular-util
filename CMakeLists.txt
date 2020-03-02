@@ -7,6 +7,7 @@ add_library(molecular-util
 	molecular/util/AtomicCounter.h
 	molecular/util/AxisAlignedBox.cpp
 	molecular/util/AxisAlignedBox.h
+	molecular/util/Blob.h
 	molecular/util/BufferInfo.h
 	molecular/util/CharacterAnimation.cpp
 	molecular/util/CharacterAnimation.h
@@ -60,7 +61,7 @@ add_library(molecular-util
 )
 add_library(molecular::util ALIAS molecular-util)
 target_include_directories(molecular-util PUBLIC .)
-target_link_libraries(molecular-util PUBLIC Eigen3::Eigen)
+target_link_libraries(molecular-util PUBLIC Eigen3::Eigen Threads::Threads)
 
 if(BUILD_TESTING)
 	add_library(molecular-testbed
