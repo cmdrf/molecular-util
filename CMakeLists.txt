@@ -11,22 +11,33 @@ add_library(molecular-util
 	molecular/util/CharacterAnimation.h
 	molecular/util/CommandLineParser.cpp
 	molecular/util/CommandLineParser.h
+	molecular/util/DdsFile.cpp
+	molecular/util/DdsFile.h
 	molecular/util/FileStreamStorage.cpp
 	molecular/util/FileStreamStorage.h
 	molecular/util/FloatToHalf.cpp
 	molecular/util/FloatToHalf.h
 	molecular/util/Hash.h
+	molecular/util/HostStream.h
+	molecular/util/LittleEndianStream.h
 	molecular/util/Math.cpp
 	molecular/util/Math.h
 	molecular/util/Matrix4.h
 	molecular/util/Matrix.h
+	molecular/util/MemoryStreamStorage.cpp
+	molecular/util/MemoryStreamStorage.h
 	molecular/util/Mesh.h
 	molecular/util/MeshUtils.cpp
 	molecular/util/MeshUtils.h
+	molecular/util/NonCopyable.h
+	molecular/util/Parser.h
+	molecular/util/PixelFormat.cpp
+	molecular/util/PixelFormat.h
 	molecular/util/Quaternion.cpp
 	molecular/util/Quaternion.h
-	molecular/util/Parser.h
 	molecular/util/Range.h
+	molecular/util/ReadStream.cpp
+	molecular/util/ReadStream.h
 	molecular/util/SphericalHarmonics.cpp
 	molecular/util/SphericalHarmonics.h
 	molecular/util/StreamStorage.cpp
