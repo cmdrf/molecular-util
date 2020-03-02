@@ -18,6 +18,7 @@ add_library(molecular-util
 	molecular/util/FileStreamStorage.h
 	molecular/util/FloatToHalf.cpp
 	molecular/util/FloatToHalf.h
+	molecular/util/GlConstants.h
 	molecular/util/Hash.h
 	molecular/util/HostStream.h
 	molecular/util/KtxFile.cpp
