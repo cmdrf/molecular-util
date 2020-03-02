@@ -4,6 +4,7 @@ project(molecular-util)
 option(BUILD_TESTING "Build unit test runner executables" OFF)
 
 add_library(molecular-util
+	molecular/util/AtomicCounter.h
 	molecular/util/AxisAlignedBox.cpp
 	molecular/util/AxisAlignedBox.h
 	molecular/util/BufferInfo.h
@@ -40,10 +41,15 @@ add_library(molecular-util
 	molecular/util/ReadStream.h
 	molecular/util/SphericalHarmonics.cpp
 	molecular/util/SphericalHarmonics.h
+	molecular/util/StdTaskQueue.cpp
+	molecular/util/StdTaskQueue.h
+	molecular/util/StdThread.h
 	molecular/util/StreamStorage.cpp
 	molecular/util/StreamStorage.h
 	molecular/util/StringUtils.cpp
 	molecular/util/StringUtils.h
+	molecular/util/Task.h
+	molecular/util/TaskDispatcher.h
 	molecular/util/TextStream.h
 	molecular/util/Vector.h
 	molecular/util/Vector3.h
