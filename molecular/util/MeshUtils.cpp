@@ -40,7 +40,7 @@ namespace util
 namespace MeshUtils
 {
 
-void Interleave(size_t count, size_t datumSize0, size_t datumSize1, const void* data0, const void* data1, void* outData)
+void Interleave(size_t count, size_t datumSize0, size_t datumSize1, void* const data0, void* const data1, void* __restrict outData)
 {
 	const uint8_t* bytes0 = static_cast<const uint8_t*>(data0);
 	const uint8_t* bytes1 = static_cast<const uint8_t*>(data1);

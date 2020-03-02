@@ -81,7 +81,7 @@ void SeparateToUnifiedIndices(
 /// Interleave vertex attribute data
 /** @param count Count of datums in data0 and data1. Size of data0 must be count times datumSize0 and size of data1 must be count times datumSize1.
 	@param outData Pointer to buffer that has the size of data0 and data1 combined. */
-void Interleave(size_t count, size_t datumSize0, size_t datumSize1, const void* data0, const void* data1, void* outData);
+void Interleave(size_t count, size_t datumSize0, size_t datumSize1, void* const data0, void* const data1, void* __restrict outData);
 
 /// Convert quad indices to triangle indices
 /** @param out Must have 3/2 times the size of in. */
@@ -129,14 +129,14 @@ void SeparateToUnifiedIndices(
 {
 	if(indices0 && indices1)
 	{
-		std::unordered_map<uint32_t, uint32_t> vertexMap;
+		std::unordered_map<uint64_t, uint32_t> vertexMap;
 
 		for(size_t i = 0; i < numIndices; ++i)
 		{
 			uint32_t index0 = indices0[i];
 			uint32_t index1 = indices1[i];
 
-			uint32_t combinedIndex = (uint32_t(index0) << 16) | index1;
+			const uint64_t combinedIndex = (static_cast<uint64_t>(index0) << 32) | index1;
 			auto it = vertexMap.find(combinedIndex);
 
 			if(it == vertexMap.end())
@@ -229,7 +229,8 @@ void SeparateToUnifiedIndices(
 			uint32_t index1 = indices1[i];
 			uint32_t index2 = indices2[i];
 
-			uint64_t combinedIndex = (uint64_t(index2) << 32) | (uint64_t(index1) << 16) | index0;
+			// Use 64 bits equally for three indices, 21 bits. Therefore this supports up to 2.1 million vertices:
+			const uint64_t combinedIndex = (static_cast<uint64_t>(index2) << 42) | (static_cast<uint64_t>(index1) << 21) | index0;
 			auto it = vertexMap.find(combinedIndex);
 
 			if(it == vertexMap.end())
