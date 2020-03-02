@@ -20,6 +20,8 @@ add_library(molecular-util
 	molecular/util/FloatToHalf.h
 	molecular/util/Hash.h
 	molecular/util/HostStream.h
+	molecular/util/KtxFile.cpp
+	molecular/util/KtxFile.h
 	molecular/util/LittleEndianStream.h
 	molecular/util/Math.cpp
 	molecular/util/Math.h
