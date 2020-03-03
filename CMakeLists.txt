@@ -59,6 +59,14 @@ add_library(molecular-util
 	molecular/util/Vector3.h
 	molecular/util/Vector4.h
 )
+
+if(APPLE)
+	target_sources(molecular-util PRIVATE
+		molecular/util/GcdTaskDispatcher.cpp
+		molecular/util/GcdTaskDispatcher.h
+	)
+endif()
+
 add_library(molecular::util ALIAS molecular-util)
 target_include_directories(molecular-util PUBLIC .)
 target_link_libraries(molecular-util PUBLIC Eigen3::Eigen Threads::Threads)
