@@ -66,6 +66,13 @@ public:
 	/** Column-major ordering. */
 	inline Matrix4(float m00, float m10, float m20, float m30, float m01, float m11, float m21, float m31, float m02, float m12, float m22, float m32, float m03, float m13, float m23, float m33);
 
+	/// Construct from Eigen expression
+	template<typename OtherDerived>
+	Matrix4(const Eigen::MatrixBase<OtherDerived>& other)
+	{
+		ToEigen() = other;
+	}
+
 	inline Vector4 operator*(const Vector4& v) const;
 	using Matrix<4,4>::operator*;
 
