@@ -271,6 +271,7 @@ struct GlConstants
 		COMPILE_STATUS                = 0x8B81,
 		LINK_STATUS                   = 0x8B82,
 		VALIDATE_STATUS               = 0x8B83,
+		INFO_LOG_LENGTH               = 0x8B84,
 		ATTACHED_SHADERS              = 0x8B85,
 		ACTIVE_UNIFORMS               = 0x8B86,
 		ACTIVE_UNIFORM_MAX_LENGTH     = 0x8B87,
