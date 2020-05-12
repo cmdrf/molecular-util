@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018-2019 Fabian Herb
+Copyright (c) 2018-2020 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -156,6 +156,7 @@ inline std::ostream& operator<<(std::ostream& o, IndexBufferInfo::Mode mode)
 	case IndexBufferInfo::Mode::kTrianglesAdjacency: return (o << "kTrianglesAdjacency");
 	case IndexBufferInfo::Mode::kTriangleStripAdjacency: return (o << "kTriangleStripAdjacency");
 	}
+	return (o << "Unknown mode");
 }
 
 inline std::ostream& operator<<(std::ostream& o, IndexBufferInfo::Type type)
@@ -166,6 +167,7 @@ inline std::ostream& operator<<(std::ostream& o, IndexBufferInfo::Type type)
 	case IndexBufferInfo::Type::kUInt16: return (o << "kUInt16");
 	case IndexBufferInfo::Type::kUInt32: return (o << "kUInt32");
 	}
+	return (o << "Unknown type");
 }
 
 inline std::ostream& operator<<(std::ostream& o, VertexAttributeInfo::Type type)
@@ -181,6 +183,7 @@ inline std::ostream& operator<<(std::ostream& o, VertexAttributeInfo::Type type)
 	case VertexAttributeInfo::Type::kUInt32: return (o << "kUInt32");
 	case VertexAttributeInfo::Type::kHalf: return (o << "kHalf");
 	}
+	return (o << "Unknown type");
 }
 
 }

@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018-2019 Fabian Herb
+Copyright (c) 2018-2020 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,7 @@ SOFTWARE.
 #include <molecular/util/Matrix4.h>
 
 #include <vector>
+#include <unordered_set>
 
 namespace molecular
 {
@@ -112,7 +113,22 @@ std::vector<int> TriangleNeighbours(const int triangleIndices[], unsigned int tr
 void Transform(Mesh& mesh, const Matrix4& transform);
 
 /// Use half floats or integer types where appropriate
-void ReducePrecision(Mesh& mesh);
+/** @param mesh Mesh to process
+	@param toHalf Vertex buffers to reduce from 32 bit to 16 bit floats
+	@param toInt8 Vertex buffers to reduce from 32 bit to 8 bit integers
+*/
+void ReducePrecision(Mesh& mesh,
+	const std::unordered_set<Hash>& toHalf = {
+		VertexAttributeInfo::kVertexPrt0,
+		VertexAttributeInfo::kVertexPrt1,
+		VertexAttributeInfo::kVertexPrt2,
+		VertexAttributeInfo::kNormal,
+		VertexAttributeInfo::kSkinWeights
+	},
+	const std::unordered_set<Hash>& toInt8 = {
+		VertexAttributeInfo::kSkinJoints
+	}
+);
 
 /*****************************************************************************/
 

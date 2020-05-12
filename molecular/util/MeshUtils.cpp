@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018-2019 Fabian Herb
+Copyright (c) 2018-2020 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,6 @@ SOFTWARE.
 #include <cassert>
 #include <cstring>
 #include <unordered_map>
-#include <unordered_set>
 
 namespace molecular
 {
@@ -169,19 +168,9 @@ void Transform(Mesh& mesh, const Matrix4& transform)
 	}
 }
 
-void ReducePrecision(Mesh& mesh)
+void ReducePrecision(Mesh& mesh, const std::unordered_set<Hash>& toHalf, const std::unordered_set<Hash>& toInt8)
 {
 	FloatToHalf fth;
-	std::unordered_set<Hash> toHalf = {
-		VertexAttributeInfo::kVertexPrt0,
-		VertexAttributeInfo::kVertexPrt1,
-		VertexAttributeInfo::kVertexPrt2,
-		VertexAttributeInfo::kNormal,
-		VertexAttributeInfo::kSkinWeights
-	};
-	std::unordered_set<Hash> toInt8 = {
-		VertexAttributeInfo::kSkinJoints
-	};
 
 	auto& attributes = mesh.GetAttributes();
 	for(auto& attribute: attributes)
