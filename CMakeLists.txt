@@ -60,7 +60,7 @@ add_library(molecular-util
 	molecular/util/Vector4.h
 )
 
-if(APPLE)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
 	target_sources(molecular-util PRIVATE
 		molecular/util/GcdTaskDispatcher.cpp
 		molecular/util/GcdTaskDispatcher.h
