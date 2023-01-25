@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2019 Fabian Herb
+Copyright (c) 2019-2023 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,16 +29,17 @@ SOFTWARE.
 #include <molecular/util/Vector3.h>
 #include <molecular/util/Quaternion.h>
 #include <molecular/util/Matrix.h>
-#include <catch.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 namespace molecular
 {
 namespace testbed
 {
+
 using namespace molecular::util;
 
 /// Matcher for Catch2 that compares Vector2
-class EqualsVector2 : public Catch::MatcherBase<Vector2>
+class EqualsVector2 : public Catch::Matchers::MatcherBase<Vector2>
 {
 public:
 	EqualsVector2(const Vector2& v, double epsilon, double margin) : mV(v), mEpsilon(epsilon), mMargin(margin)
@@ -62,7 +63,7 @@ inline EqualsVector2 EqualsApprox(const Vector2& v, double epsilon = 0.00001, do
 }
 
 /// Matcher for Catch2 that compares Vector3
-class EqualsVector3 : public Catch::MatcherBase<Vector3>
+class EqualsVector3 : public Catch::Matchers::MatcherBase<Vector3>
 {
 public:
 	EqualsVector3(const Vector3& v, double epsilon, double margin) : mV(v), mEpsilon(epsilon), mMargin(margin)
@@ -86,7 +87,7 @@ inline EqualsVector3 EqualsApprox(const Vector3& v, double epsilon = 0.00001, do
 }
 
 /// Matcher for Catch2 that compares Quaternion
-class EqualsQuaternion : public Catch::MatcherBase<util::Quaternion>
+class EqualsQuaternion : public Catch::Matchers::MatcherBase<util::Quaternion>
 {
 public:
 	EqualsQuaternion(const util::Quaternion& q, double epsilon, double margin) : mQ(q), mEpsilon(epsilon), mMargin(margin)
@@ -111,7 +112,7 @@ inline EqualsQuaternion EqualsApprox(const util::Quaternion& q, double epsilon =
 
 /// Matcher for Catch2 that compares Matrix
 template<int rows, int cols, typename T>
-class EqualsMatrix : public Catch::MatcherBase<util::Matrix<rows, cols, T>>
+class EqualsMatrix : public Catch::Matchers::MatcherBase<util::Matrix<rows, cols, T>>
 {
 public:
 	EqualsMatrix(const util::Matrix<rows, cols, T>& m, double epsilon) : mM(m), mEpsilon(epsilon)
@@ -122,7 +123,7 @@ public:
 	{
 		for(int i = 0; i < rows; ++i)
 			for(int j = 0; j < cols; ++j)
-				if(m(i, j) != Approx(mM(i, j)).epsilon(mEpsilon))
+				if(m(i, j) != Catch::Approx(mM(i, j)).epsilon(mEpsilon))
 					return false;
 		return true;
 	}

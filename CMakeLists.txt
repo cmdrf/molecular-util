@@ -73,12 +73,16 @@ target_link_libraries(molecular-util PUBLIC Eigen3::Eigen Threads::Threads)
 
 if(BUILD_TESTING)
 	add_library(molecular-testbed
-		molecular/testbed/TestsMain.cpp
 		molecular/testbed/Matchers.cpp
 		molecular/testbed/Matchers.h
+		3rdparty/catch_amalgamated.cpp
 	)
     add_library(molecular::testbed ALIAS molecular-testbed)
-	target_include_directories(molecular-testbed PUBLIC 3rdparty .)
+	target_include_directories(molecular-testbed PUBLIC
+		3rdparty
+		.
+		molecular/testbed/include
+	)
 	target_link_libraries(molecular-testbed PUBLIC molecular::util)
 
 	add_subdirectory(tests)

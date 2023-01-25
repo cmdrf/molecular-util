@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2019 Fabian Herb
+Copyright (c) 2019-2023 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include <catch.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <molecular/util/AxisAlignedBox.h>
 
 using namespace molecular;
 using namespace molecular::util;
+using namespace Catch;
 
 TEST_CASE("TestOverlap")
 {

@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2019 Fabian Herb
+Copyright (c) 2019-2023 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,8 @@ namespace molecular
 {
 namespace testbed
 {
+
+using namespace Catch;
 
 bool EqualsVector2::match(const Vector2& v) const
 {
