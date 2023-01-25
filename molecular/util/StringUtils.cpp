@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018 Fabian Herb
+Copyright (c) 2018-2023 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -75,6 +75,11 @@ bool EndsWith(const std::string& haystack, const std::string& needle)
 	if(needleLength > haystackLength)
 		return false;
 	return !haystack.compare(haystackLength - needleLength, needleLength, needle);
+}
+
+bool Contains(const char* haystack, const char* needle)
+{
+	return strstr(haystack, needle);
 }
 
 std::string StrError(int errnum)

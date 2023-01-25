@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018-2019 Fabian Herb
+Copyright (c) 2018-2023 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -46,6 +46,8 @@ bool EndsWith(const char* haystack, const char* needle);
 
 /// Returns true if haystack ends with needle
 bool EndsWith(const std::string& haystack, const std::string& needle);
+
+bool Contains(const char* haystack, const char* needle);
 
 /// Returns true if strings are equal
 inline bool Equals(const char* a, const char* b) {return std::strcmp(a, b) == 0;}
