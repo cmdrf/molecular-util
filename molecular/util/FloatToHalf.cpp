@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018-2019 Fabian Herb
+Copyright (c) 2018-2023 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,8 @@ namespace molecular
 {
 namespace util
 {
+
+#ifndef __ARM_FP16_FORMAT_IEEE
 
 FloatToHalf::FloatToHalf()
 {
@@ -73,6 +75,8 @@ FloatToHalf::FloatToHalf()
 		}
 	}
 }
+
+#endif
 
 }
 } // namespace molecular

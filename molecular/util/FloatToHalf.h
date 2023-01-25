@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018-2019 Fabian Herb
+Copyright (c) 2018-2023 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,23 @@ namespace molecular
 namespace util
 {
 
+#ifdef __ARM_FP16_FORMAT_IEEE
+// TODO: Might also be available on x86 through AVX512 or emulation
+
+class FloatToHalf
+{
+public:
+	uint16_t Convert(float input) const
+	{
+		_Float16 f = input;
+		uint16_t out;
+		std::memcpy(&out, &f, 2);
+		return out;
+	}
+};
+
+#else
+
 /// Converts 32 bit to 16 bit floating point numbers
 /** Fast Half Float Conversions, Jeroen van der Zijp, November 2008
 	ftp://ftp.fox-toolkit.org/pub/fasthalffloatconversion.pdf */
@@ -54,6 +71,8 @@ private:
 	uint16_t mBaseTable[512];
 	int8_t mShiftTable[512];
 };
+
+#endif // __ARM_FP16_FORMAT_IEEE
 
 }
 }
