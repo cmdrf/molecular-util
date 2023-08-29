@@ -35,6 +35,10 @@ add_library(molecular-util
 	molecular/util/MeshUtils.cpp
 	molecular/util/MeshUtils.h
 	molecular/util/NonCopyable.h
+	molecular/util/ObjFile.cpp
+	molecular/util/ObjFile.h
+	molecular/util/ObjFileUtils.cpp
+	molecular/util/ObjFileUtils.h
 	molecular/util/Parser.h
 	molecular/util/PixelFormat.cpp
 	molecular/util/PixelFormat.h
