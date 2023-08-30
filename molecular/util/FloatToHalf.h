@@ -42,7 +42,7 @@ class FloatToHalf
 public:
 	uint16_t Convert(float input) const
 	{
-		_Float16 f = input;
+		__fp16 f = input;
 		uint16_t out;
 		std::memcpy(&out, &f, 2);
 		return out;
