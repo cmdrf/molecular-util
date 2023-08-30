@@ -106,6 +106,15 @@ public:
 		return newVec;
 	}
 
+	/// Component-wise vector division
+	Subclass operator/(const VectorTmpl& r) const
+	{
+		Subclass newVec;
+		for(int i = 0; i < components; ++i)
+			newVec[i] = v[i] / r[i];
+		return newVec;
+	}
+
 	/// Component-wise in-place scalar division
 	Subclass& operator/=(T r)
 	{
