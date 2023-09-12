@@ -52,9 +52,11 @@ public:
 	FileReadStorage(FileReadStorage&& that) noexcept;
 
 	/// Construct from file name
+	/** Throws an exception if the file could not be opened. */
 	explicit FileReadStorage(const char* filename);
 
 	/// Construct from file name (std::string)
+	/** Throws an exception if the file could not be opened. */
 	explicit FileReadStorage(const std::string& filename);
 
 	/// Destructor
