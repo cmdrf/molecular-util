@@ -3,6 +3,9 @@ project(molecular-util)
 
 option(BUILD_TESTING "Build unit test runner executables" OFF)
 
+find_package(Eigen3 REQUIRED)
+find_package(Threads REQUIRED)
+
 add_library(molecular-util
 	molecular/util/AtomicCounter.h
 	molecular/util/AxisAlignedBox.cpp
