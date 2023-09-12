@@ -3,8 +3,26 @@ project(molecular-util)
 
 option(BUILD_TESTING "Build unit test runner executables" OFF)
 
-find_package(Eigen3 REQUIRED)
 find_package(Threads REQUIRED)
+
+find_package(Eigen3)
+if(NOT Eigen3_FOUND)
+	include(ExternalProject)
+	set(EIGEN_PREFIX ${CMAKE_BINARY_DIR}/eigen)
+	ExternalProject_Add(external_eigen
+		PREFIX ${EIGEN_PREFIX}
+		URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
+		URL_MD5 132dde48fe2b563211675626d29f1707
+		CONFIGURE_COMMAND ""
+		BUILD_COMMAND ""
+		INSTALL_COMMAND ""
+	)
+	set_target_properties(external_eigen PROPERTIES EXCLUDE_FROM_ALL TRUE)
+	add_library(eigen INTERFACE)
+	target_include_directories(eigen INTERFACE SYSTEM ${EIGEN_PREFIX}/src/external_eigen/)
+	add_dependencies(eigen external_eigen)
+	add_library(Eigen3::Eigen ALIAS eigen)
+endif()
 
 add_library(molecular-util
 	molecular/util/AtomicCounter.h
