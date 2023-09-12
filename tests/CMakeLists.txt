@@ -1,5 +1,6 @@
 add_executable(molecular-util-tests
 	TestAxisAlignedBox.cpp
+	TestCommandLineParser.cpp
 	TestFloatToHalf.cpp
 	TestHash.cpp
 	TestMath.cpp
