@@ -76,6 +76,8 @@ target_include_directories(molecular-util PUBLIC .)
 target_link_libraries(molecular-util PUBLIC Eigen3::Eigen Threads::Threads)
 
 if(BUILD_TESTING)
+	include(CTest)
+
 	add_library(molecular-testbed
 		molecular/testbed/Matchers.cpp
 		molecular/testbed/Matchers.h

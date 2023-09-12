@@ -17,3 +17,5 @@ target_link_libraries(molecular-util-tests
 	molecular::util
 	molecular::testbed
 )
+
+add_test(NAME molecular-util-tests COMMAND molecular-util-tests)
