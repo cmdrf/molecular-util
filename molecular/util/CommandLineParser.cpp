@@ -31,7 +31,7 @@ namespace molecular
 namespace util
 {
 
-void CommandLineParser::Parse(int argc, char** argv)
+void CommandLineParser::Parse(int argc, const char* const* argv)
 {
 	mProgramName = argv[0];
 	size_t currentPositionalArg = 0;
@@ -130,7 +130,7 @@ CommandLineParser::Flag::Flag(CommandLineParser& parser, const std::string& long
 {
 }
 
-void CommandLineParser::Flag::Parse(int& /*i*/, int /*argc*/, char** /*argv*/)
+void CommandLineParser::Flag::Parse(int& /*i*/, int /*argc*/, const char* const* /*argv*/)
 {
 	// Flags don't have additional parameters to parse
 }
@@ -147,7 +147,7 @@ CommandLineParser::HelpFlag::HelpFlag(CommandLineParser& parser) :
 
 }
 
-void CommandLineParser::HelpFlag::Parse(int& /*i*/, int /*argc*/, char** /*argv*/)
+void CommandLineParser::HelpFlag::Parse(int& /*i*/, int /*argc*/, const char* const* /*argv*/)
 {
 	mParser.PrintHelp();
 	// Stop execution of the program, but don't display an error, sort of:

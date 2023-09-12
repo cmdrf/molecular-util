@@ -69,7 +69,7 @@ class CommandLineParser
 public:
 	/// Parse command line arguments
 	/** Throws on failure. */
-	void Parse(int argc, char** argv);
+	void Parse(int argc, const char* const * argv);
 
 	/// Print usage information
 	/** Alternatively, add a HelpFlag. */
@@ -113,7 +113,7 @@ class CommandLineParser::OptionBase : public CommandLineParser::Arg
 {
 public:
 	OptionBase(CommandLineParser& parser, const std::string& longOpt, const std::string& help);
-	virtual void Parse(int& i, int argc, char** argv) = 0;
+	virtual void Parse(int& i, int argc, const char* const* argv) = 0;
 	void PrintHelp() override;
 
 protected:
@@ -138,7 +138,7 @@ class CommandLineParser::Flag : public CommandLineParser::OptionBase
 {
 public:
 	Flag(CommandLineParser& parser, const std::string& longOpt, const std::string& help);
-	void Parse(int& i, int argc, char** argv) override;
+	void Parse(int& i, int argc, const char* const* argv) override;
 	void PrintHelp() override;
 };
 
@@ -147,7 +147,7 @@ class CommandLineParser::HelpFlag : public CommandLineParser::Flag
 {
 public:
 	HelpFlag(CommandLineParser& parser);
-	void Parse(int& i, int argc, char** argv) override;
+	void Parse(int& i, int argc, const char* const* argv) override;
 
 private:
 	CommandLineParser& mParser;
@@ -167,7 +167,7 @@ public:
 
 	}
 
-	void Parse(int& i, int argc, char** argv) override
+	void Parse(int& i, int argc, const char* const* argv) override
 	{
 		i++;
 		if(i >= argc)
