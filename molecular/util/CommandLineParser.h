@@ -87,6 +87,8 @@ public:
 	template<class T>
 	class PositionalArg;
 
+	class RemainingPositionalArgs;
+
 private:
 	std::unordered_map<std::string, OptionBase*> mOptions;
 	std::vector<PositionalArgBase*> mPositionalArgs;
@@ -101,6 +103,7 @@ public:
 	virtual ~Arg() = default;
 
 	virtual void PrintHelp() = 0;
+	virtual void Parse(int& i, int argc, const char* const* argv) = 0;
 
 	operator bool() {return mPresent;}
 
@@ -113,7 +116,6 @@ class CommandLineParser::OptionBase : public CommandLineParser::Arg
 {
 public:
 	OptionBase(CommandLineParser& parser, const std::string& longOpt, const std::string& help);
-	virtual void Parse(int& i, int argc, const char* const* argv) = 0;
 	void PrintHelp() override;
 
 protected:
@@ -124,7 +126,6 @@ class CommandLineParser::PositionalArgBase : public CommandLineParser::Arg
 {
 public:
 	PositionalArgBase(CommandLineParser& parser, const std::string& name, const std::string& help);
-	virtual void SetValue(const std::string& arg) = 0;
 	void PrintHelp() override;
 	const std::string& GetName() {return mName;}
 
@@ -200,9 +201,9 @@ public:
 
 	}
 
-	void SetValue(const std::string& arg) override
+	void Parse(int& i, int argc, const char* const* argv) override
 	{
-		std::istringstream iss(arg);
+		std::istringstream iss(argv[i]);
 		iss >> mValue;
 	}
 
@@ -219,6 +220,30 @@ public:
 private:
 	T mValue;
 };
+
+/// Variable number of positional arguments
+/** Must come last. */
+class CommandLineParser::RemainingPositionalArgs : public CommandLineParser::PositionalArgBase
+{
+public:
+	RemainingPositionalArgs(CommandLineParser& parser, const std::string& name, const std::string& help, std::vector<std::string> values = std::vector<std::string>());
+
+	void Parse(int& i, int argc, const char* const* argv) override;
+
+	const std::vector<std::string>* operator->() const
+	{
+		return &mValues;
+	}
+
+	const std::vector<std::string>& operator*() const
+	{
+		return mValues;
+	}
+
+private:
+	std::vector<std::string> mValues;
+};
+
 
 } // namespace util
 } // namespace molecular

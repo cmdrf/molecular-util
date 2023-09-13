@@ -50,7 +50,7 @@ void CommandLineParser::Parse(int argc, const char* const* argv)
 		else if(currentPositionalArg < mPositionalArgs.size())
 		{
 			auto& posArg = mPositionalArgs.at(currentPositionalArg);
-			posArg->SetValue(arg);
+			posArg->Parse(i, argc, argv);
 			posArg->mPresent = true;
 			currentPositionalArg++;
 		}
@@ -152,6 +152,22 @@ void CommandLineParser::HelpFlag::Parse(int& /*i*/, int /*argc*/, const char* co
 	mParser.PrintHelp();
 	// Stop execution of the program, but don't display an error, sort of:
 	throw std::runtime_error("Please read the help text above.");
+}
+
+CommandLineParser::RemainingPositionalArgs::RemainingPositionalArgs(CommandLineParser& parser, const std::string& name, const std::string& help, std::vector<std::string> values) :
+	PositionalArgBase(parser, name, help),
+	mValues(values)
+{
+
+}
+
+void CommandLineParser::RemainingPositionalArgs::Parse(int& i, int argc, const char* const * argv)
+{
+	while(i < argc)
+	{
+		mValues.push_back(argv[i]);
+		++i;
+	}
 }
 
 }

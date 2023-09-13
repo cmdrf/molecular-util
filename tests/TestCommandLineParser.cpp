@@ -50,4 +50,32 @@ TEST_CASE("Parsing basic command line arguments", "[CommandLineParser]")
 
 		REQUIRE_THROWS_AS(cmd.Parse(argc, argv), std::exception);
 	}
+
+	SECTION("Variable number of positional arguments")
+	{
+		const char* argv[] = {
+			"program_name",
+			"--prt",
+			"out.txt",
+			"in1.txt",
+			"in2.txt"
+		};
+		int argc = sizeof(argv) / sizeof(char*);
+
+		CommandLineParser cmd;
+		CommandLineParser::PositionalArg<std::string> outFileName(cmd, "output file", "Output compiled mesh file");
+		CommandLineParser::Flag prt(cmd, "prt", "Enable radiance transfer precomputation");
+		CommandLineParser::Option<float> scale(cmd, "scale", "Mesh scale factor", 1.0);
+		CommandLineParser::RemainingPositionalArgs remaining(cmd, "input files", "Input Files");
+		CommandLineParser::HelpFlag help(cmd);
+
+		REQUIRE_NOTHROW(cmd.Parse(argc, argv));
+
+		REQUIRE(*outFileName == "out.txt");
+		REQUIRE(prt);
+		REQUIRE(remaining->size() == 2);
+		REQUIRE(remaining->at(0) == "in1.txt");
+		REQUIRE(remaining->at(1) == "in2.txt");
+
+	}
 }
