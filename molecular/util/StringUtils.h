@@ -86,6 +86,11 @@ std::vector<std::string> Explode(const std::string& str, char delimiter);
 /// Splits a string at the given delimiters and returns list of delimited elements
 std::vector<std::string> Explode(const std::string& str, const char* delimiters);
 
+/// File name without directory
+std::string FileName(const std::string& path);
+
+/// File name without directory and without extension
+std::string FileNameWithoutExtension(const std::string& path);
 }
 
 }

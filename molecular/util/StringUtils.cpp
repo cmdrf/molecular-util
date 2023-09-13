@@ -123,6 +123,25 @@ std::vector<std::string> Explode(const std::string& str, const char* delimiters)
 	return ExplodeImpl(str, delimiters);
 }
 
+std::string FileName(const std::string& path)
+{
+	auto lastSlash = path.find_last_of("/\\");
+	if(lastSlash == std::string::npos)
+		return path;
+	else
+		return path.substr(lastSlash + 1);
+}
+
+std::string FileNameWithoutExtension(const std::string& path)
+{
+	auto filename = FileName(path);
+	auto firstDot = filename.find_first_of('.');
+	if(firstDot == std::string::npos)
+		return filename;
+	else
+		return filename.substr(0, firstDot);
+}
+
 }
 }
 } // namespace molecular
