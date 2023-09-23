@@ -5,16 +5,16 @@ Collection of utility classes used by other molecular components
 
 ### Math
 
-- `AxisAlignedBox`
+- `AxisAlignedBox`: Data structure commonly used for visibility detection
 - `Math`
 - `Matrix`: Matrix template
 - `Matrix3`
 - `Matrix4`
-- `Quaternion`
-- `SphericalHarmonics`
+- `Quaternion`: 3D rotation representation
+- `SphericalHarmonics`: A mathematical concept used for lighting calculations
 - `Vector`: Vector template
-- `Vector3`
-- `Vector4`
+- `Vector3`: Three-dimensional float vector
+- `Vector4`: Four-dimensional float vector
 
 ### File Formats
 
@@ -38,7 +38,7 @@ Collection of utility classes used by other molecular components
 - `HostStream`
 - `LittleEndianStream`
 - `MemoryStreamStorage`
-- `ReadStream`
+- `ReadStream`: Abstract base class for data storage streams
 - `StreamStorage`
 - `TextStream`
 
@@ -47,10 +47,10 @@ Collection of utility classes used by other molecular components
 - `BufferInfo`: Information about vertex attribute data in a GPU buffer
 - `CharacterAnimation`: Skeletal animation with custom file format
 - `FloatToHalf`: Create 16-bit floats
-- `GlConstants`
-- `Mesh`
-- `MeshUtils`
-- `PixelFormat`
+- `GlConstants`: Most OpenGL constants, properly namespaced
+- `Mesh`: Container for 3D mesh data
+- `MeshUtils`: Various processing functions for 3D meshes
+- `PixelFormat`: enum for various image data formats, mostly for use with OpenGL
 
 ### Various
 
@@ -60,4 +60,4 @@ Collection of utility classes used by other molecular components
 - `NonCopyable`: Base class that deletes copy constructors
 - `Parser`: Template meta parser generator
 - `Range`: Pair of iterators
-- `StringUtils`
+- `StringUtils`: Various string processing functions
