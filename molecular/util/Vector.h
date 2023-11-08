@@ -27,6 +27,7 @@ SOFTWARE.
 #define MOLECULAR_VECTOR_H
 
 #include <cmath>
+#include <cstdint>
 #include <iostream>
 
 namespace molecular
