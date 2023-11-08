@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2019 Fabian Herb
+Copyright (c) 2019-2023 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,7 @@ SOFTWARE.
 #ifndef MOLECULAR_UTIL_READSTREAM_H
 #define MOLECULAR_UTIL_READSTREAM_H
 
+#include <cstdint>
 #include <string>
 
 namespace molecular
