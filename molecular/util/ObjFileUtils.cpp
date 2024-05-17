@@ -111,7 +111,10 @@ void ObjVertexGroupBuffers(
 		uvVertexData = objFile.GetTexCoords().data();
 	}
 
-	MeshUtils::SeparateToUnifiedIndices(
+	if(vg.hasNormals && vg.hasTexCoords)
+	{
+		// Unify three indices. Supports indices up to 2^21:
+		MeshUtils::SeparateToUnifiedIndices(
 				positionIndices.size(),
 				positionIndices.data(),
 				normalIndexData,
@@ -123,6 +126,33 @@ void ObjVertexGroupBuffers(
 				unifiedPositions,
 				unifiedNormals,
 				unifiedUvs);
+	}
+	else if(vg.hasNormals)
+	{
+		// Use the two-component version because it supports larger indices:
+		MeshUtils::SeparateToUnifiedIndices(
+				positionIndices.size(),
+				positionIndices.data(),
+				normalIndexData,
+				objFile.GetVertices().size(), objFile.GetVertices().data(),
+				objFile.GetNormals().size(), normalVertexData,
+				unifiedIndices,
+				unifiedPositions,
+				unifiedNormals);
+	}
+	else if(vg.hasTexCoords)
+	{
+		// Use the two-component version because it supports larger indices:
+		MeshUtils::SeparateToUnifiedIndices(
+				positionIndices.size(),
+				positionIndices.data(),
+				uvIndexData,
+				objFile.GetVertices().size(), objFile.GetVertices().data(),
+				objFile.GetTexCoords().size(), uvVertexData,
+				unifiedIndices,
+				unifiedPositions,
+				unifiedUvs);
+	}
 }
 
 }
