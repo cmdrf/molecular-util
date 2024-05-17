@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018-2020 Fabian Herb
+Copyright (c) 2018-2024 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -246,6 +246,8 @@ void SeparateToUnifiedIndices(
 			uint32_t index2 = indices2[i];
 
 			// Use 64 bits equally for three indices, 21 bits. Therefore this supports up to 2.1 million vertices:
+			if(index0 >= (1 << 21) || index1 >= (1 << 21) || index2 >= (1 << 21))
+				throw std::runtime_error("SeparateToUnifiedIndices: Index too large");
 			const uint64_t combinedIndex = (static_cast<uint64_t>(index2) << 42) | (static_cast<uint64_t>(index1) << 21) | index0;
 			auto it = vertexMap.find(combinedIndex);
 

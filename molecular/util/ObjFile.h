@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2018-2023 Fabian Herb
+Copyright (c) 2018-2024 Fabian Herb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -65,9 +65,9 @@ public:
 			}
 		}
 
-		std::array<uint16_t, vertices> vertexIndices;
-		std::array<uint16_t, vertices> texCoordIndices;
-		std::array<uint16_t, vertices> normalIndices;
+		std::array<uint32_t, vertices> vertexIndices;
+		std::array<uint32_t, vertices> texCoordIndices;
+		std::array<uint32_t, vertices> normalIndices;
 	};
 
 	typedef Face<4> Quad; ///< Face with four vertices (quad)
