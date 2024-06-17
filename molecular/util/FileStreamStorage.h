@@ -95,6 +95,12 @@ public:
 
 	size_t GetCursor() {return ftell(mFile);}
 
+	void SetCursor(size_t cursor)
+	{
+		assert(mFile);
+		fseek(mFile, long(cursor), SEEK_SET);
+	}
+
 private:
 	FILE* mFile = nullptr;
 };
