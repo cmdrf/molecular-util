@@ -101,7 +101,7 @@ namespace Murmur
 	}
 }
 
-constexpr uint32_t operator"" _H(const char* str, size_t length)
+constexpr uint32_t operator""_H(const char* str, size_t length)
 {
 	return Murmur::Hash(str, length);
 }
